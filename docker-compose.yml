@@ -1,4 +1,5 @@
 services:
+  # 1. BASE DE DATOS
   mysql-db:
     image: mysql:8.0
     container_name: wishdish_mysql
@@ -10,5 +11,32 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  # 2. BACKEND (Spring Boot)
+  backend:
+    image: maven:3.9-eclipse-temurin-21 # Usa la versión de Java que hayas elegido
+    container_name: wishdish_backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app          # Mapea tu código local al contenedor
+      - maven_cache:/root/.m2   # Caché MÁGICO para no descargar librerías cada vez
+    ports:
+      - "8080:8080"
+    command: mvn spring-boot:run # Ejecuta el servidor en modo desarrollo
+    depends_on:
+      - mysql-db
+
+  # 3. FRONTEND (Angular + Firebase)
+  frontend:
+    image: node:20 # Versión recomendada para Angular actual
+    container_name: wishdish_frontend
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "4200:4200"
+    # Este comando instala los paquetes (incluido Firebase) y arranca Angular
+    command: /bin/sh -c "npm install && npx ng serve --host 0.0.0.0"
+
 volumes:
   mysql_data:
+  maven_cache: # Guarda las librerías de Java para que los reinicios sean rápidos
