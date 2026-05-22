@@ -21,7 +21,7 @@ services:
       - maven_cache:/root/.m2   # Caché MÁGICO para no descargar librerías cada vez
     ports:
       - "8080:8080"
-    command: mvn spring-boot:run # Ejecuta el servidor en modo desarrollo
+    command: mvn clean spring-boot:run # Ejecuta el servidor en modo desarrollo
     depends_on:
       - mysql-db
 
