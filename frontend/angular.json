@@ -81,7 +81,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "browsers": "src/main.ts",
             "tsConfig": "tsconfig.spec.json",
             "polyfills": [
               "zone.js"
