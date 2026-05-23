@@ -15,6 +15,7 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "polyfills": ["zone.js"],
             "assets": [
               {
                 "glob": "**/*",
@@ -60,7 +61,8 @@
             "allowedHosts": [
               "localhost",
               "127.0.0.1",
-              "0.0.0.0"
+              "0.0.0.0",
+              "all"
             ]
           },
           "configurations": {
@@ -79,7 +81,11 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
+            "browsers": "src/main.ts",
             "tsConfig": "tsconfig.spec.json",
+            "polyfills": [
+              "zone.js"
+            ],
             "assets": [
               {
                 "glob": "**/*",

@@ -13,30 +13,32 @@ services:
 
   # 2. BACKEND (Spring Boot)
   backend:
-    image: maven:3.9-eclipse-temurin-21 # Usa la versión de Java que hayas elegido
+    image: maven:3.9-eclipse-temurin-21
     container_name: wishdish_backend
     working_dir: /app
     volumes:
-      - ./backend:/app          # Mapea tu código local al contenedor
-      - maven_cache:/root/.m2   # Caché MÁGICO para no descargar librerías cada vez
+      - ./backend:/app:z
+      - maven_cache:/root/.m2:z
     ports:
       - "8080:8080"
-    command: mvn clean spring-boot:run # Ejecuta el servidor en modo desarrollo
+    command: mvn clean spring-boot:run
     depends_on:
       - mysql-db
 
-  # 3. FRONTEND (Angular + Firebase)
+  # 3. FRONTEND (Angular)
   frontend:
-    image: node:20 # Versión recomendada para Angular actual
+    image: node:20
     container_name: wishdish_frontend
     working_dir: /app
     volumes:
-      - ./frontend:/app
+      - ./frontend:/app:z
+      - frontend_node_modules:/app/node_modules   # ← NUEVO: aísla node_modules en Linux
     ports:
       - "4200:4200"
-    # Este comando instala los paquetes (incluido Firebase) y arranca Angular
-    command: /bin/sh -c "npm install && npx ng serve --host 0.0.0.0"
+    command: /bin/sh -c "rm -rf .angular/cache && npm install && npx ng serve --host 0.0.0.0 --poll 1000"
+    #                                                                ↑ NUEVO: necesario en Docker
 
 volumes:
   mysql_data:
-  maven_cache: # Guarda las librerías de Java para que los reinicios sean rápidos
+  maven_cache:
+  frontend_node_modules:   # ← NUEVO: volumen Docker nativo para node_modules
