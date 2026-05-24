@@ -36,8 +36,6 @@ services:
     ports:
       - "4200:4200"
     command: /bin/sh -c "rm -rf .angular/cache && npm install && npx ng serve --host 0.0.0.0 --poll 1000"
-    #                                                                ↑ NUEVO: necesario en Docker
-
 volumes:
   mysql_data:
   maven_cache:

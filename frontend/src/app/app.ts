@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,7 @@ export class App implements OnInit { // <-- ¡Aquí está el cambio clave! (Ante
   }
 
   cargarNombres() {
-    this.http.get<any[]>('http://localhost:8080/api/test').subscribe({
+    this.http.get<any[]>(`${environment.apiUrl}test`).subscribe({
       next: (data) => this.nombres = data,
       error: (err) => console.error('Error al cargar', err)
     });
@@ -31,7 +32,7 @@ export class App implements OnInit { // <-- ¡Aquí está el cambio clave! (Ante
     if (!this.nuevoNombre) return;
 
     const body = { nombre: this.nuevoNombre };
-    this.http.post('http://localhost:8080/api/test', body).subscribe({
+    this.http.post(`${environment.apiUrl}test`, body).subscribe({
       next: () => {
         this.nuevoNombre = '';
         this.cargarNombres();
