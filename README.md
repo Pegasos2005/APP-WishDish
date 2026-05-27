@@ -1,6 +1,7 @@
 
 
 Tecnologies:
+Firebase
 Docker
 Node.js -> Angular
 Maven -> Spring Boot
@@ -13,3 +14,7 @@ docker-compose down
 
 docker-compose logs frontend (backend, mysql...)
 docker-compose restart frontend (backend, mysql...)
+
+Desarrollo:
+UH01: Implemented Angular and Spring Boot with docker (Developer Model), linked to FireBase. And MySQL and
+phpmyadmin added in docker too.
