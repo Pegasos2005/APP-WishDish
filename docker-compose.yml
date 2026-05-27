@@ -36,6 +36,19 @@ services:
     ports:
       - "4200:4200"
     command: /bin/sh -c "rm -rf .angular/cache && npm install && npx ng serve --host 0.0.0.0 --poll 1000"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: wishdish_phpmyadmin
+    environment:
+      PMA_HOST: mysql-db # Le decimos que se conecte al contenedor de tu base de datos
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8081:80" # Mapeamos el puerto 80 del contenedor al 8081 de tu PC
+    depends_on:
+      - mysql-db
+
 volumes:
   mysql_data:
   maven_cache:
