@@ -1,12 +1,12 @@
 <header class="header-container">
 
-  <div class="header-left"> <!--
+  <div class="header-left">
     <button *ngIf="showBackButton" (click)="goBack()" class="back-button">
       ❮
-    </button>-->
+    </button>
 
     <span class="greeting">
-      Bienvenido, Paco 👋
+      {{ 'HEADER.WELCOME' | translate }}, {{ userName }} 👋
     </span>
   </div>
 
@@ -16,14 +16,23 @@
 
   <div class="header-right">
 
-    <button class="icon-button" title="Activar modo oscuro">
-      🌙
-    </button>
+    <button class="icon-button" title="Activar modo oscuro">🌙</button>
 
-    <div class="language-selector">
-      <img src="/header/flags/spain.svg" alt="ES" class="flag-icon">
-      <span class="lang-text">ES</span>
-      <span class="arrow-down">▼</span>
+    <div class="language-dropdown-container">
+
+      <div class="language-selector" (click)="toggleLangMenu()">
+        <img [src]="currentLang.flag" [alt]="currentLang.name" class="flag-icon">
+        <span class="lang-text">{{ currentLang.name }}</span>
+        <span class="arrow-down">▼</span>
+      </div>
+
+      <ul class="dropdown-menu" *ngIf="isLangMenuOpen">
+        <li *ngFor="let lang of languages" (click)="changeLanguage(lang)" class="dropdown-item">
+          <img [src]="lang.flag" [alt]="lang.name" class="flag-icon">
+          <span>{{ lang.name }}</span>
+        </li>
+      </ul>
+
     </div>
 
   </div>
