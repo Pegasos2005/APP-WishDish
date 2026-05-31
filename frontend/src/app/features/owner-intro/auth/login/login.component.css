@@ -100,6 +100,14 @@
   transition: filter 0.3s ease;
 }
 
+/* Magia del Dark Mode:
+  Como la imagen es negra por defecto, cuando la app entre en modo oscuro
+  invertimos sus colores al 100% para que se vuelva totalmente blanca.
+*/
+:host-context(body.dark) .eye-icon {
+  filter: invert(1) brightness(2);
+}
+
 /* Botón Principal */
 .submit-btn {
   width: 100%;
