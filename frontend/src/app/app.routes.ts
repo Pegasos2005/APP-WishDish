@@ -1,3 +1,4 @@
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -17,7 +18,8 @@ export const routes: Routes = [
     children: [
       {
         path: 'login', // La ruta real será: localhost:4200/owner-intro/login
-        loadComponent: () => import('./features/owner-intro/auth/login/login.component').then(m => m.LoginComponent)
+        loadComponent: () => import('./features/owner-intro/auth/login/login.component').then(m => m.LoginComponent),
+        data: { showBackButton: false, welcomeText: false  }
       }
       // Aquí añadiremos más adelante:
       // { path: 'options', loadComponent: () => ... }

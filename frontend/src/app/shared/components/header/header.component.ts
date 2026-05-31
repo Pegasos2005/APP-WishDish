@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +13,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent {
   showBackButton: boolean = true;
+  welcomeText: boolean = true;
   userName: string = 'Paco'; // Más adelante esto vendrá de Firebase
   isDarkMode: boolean = false;
 
@@ -29,10 +32,30 @@ export class HeaderComponent {
   // Idioma seleccionado por defecto
   currentLang = this.languages[0];
 
-  constructor(private translate: TranslateService) {
-    // Le decimos a Angular que empiece en español
+  constructor(private translate: TranslateService, private router: Router, private activatedRoute: ActivatedRoute) {
+    // Le decimos a Angular que empiece en inglés (lo que ya tenías)
     this.translate.setDefaultLang('en');
     this.translate.use('en');
+
+    // --- NUEVA LÓGICA DEL HEADER DINÁMICO ---
+    // Escuchamos cada vez que el usuario termina de navegar a una nueva pantalla
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+
+      // Buscamos cuál es la ruta hija final en la que estamos (ej. /owner-intro/login)
+      let currentRoute = this.activatedRoute.root;
+      while (currentRoute.firstChild) {
+        currentRoute = currentRoute.firstChild;
+      }
+
+      // Extraemos la información (data) de esa ruta exacta
+      const data = currentRoute.snapshot.data;
+
+      // Actualizamos las variables. Si la ruta no dice nada, por defecto serán true.
+      this.showBackButton = data['showBackButton'] ?? true;
+      this.welcomeText = data['welcomeText'] ?? true;
+    });
   }
 
   goBack() {
