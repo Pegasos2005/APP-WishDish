@@ -1,12 +1,13 @@
-/* Contenedor principal del Header */
+/* Contenedor principal del Header usando variables */
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 30px 30px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* --- BLOQUE IZQUIERDO --- */
@@ -23,16 +24,17 @@
   cursor: pointer;
   padding: 5px;
   border-radius: 5px;
+  color: var(--text-main);
   transition: background-color 0.2s;
 }
 
 .back-button:hover {
-  background-color: #f3f4f6;
+  background-color: var(--border-color);
 }
 
 .greeting {
   font-weight: 500;
-  color: #374151;
+  color: var(--text-main);
   font-size: 16px;
 }
 
@@ -43,14 +45,23 @@
   transform: translateX(-50%);
 }
 
-.logo-text {
-  margin: 0;
-  color: #2563eb;
-  font-weight: 900;
-  letter-spacing: 1px;
+.logo-wrapper {
+  padding: 4px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* --- BLOQUE DERECHO --- */
+.logo-image {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  transition: filter 0.3s ease;
+}
+
+/* --- BLOQUE DERECHO (¡Aquí estaba el error, lo añadimos!) --- */
 .header-right {
   display: flex;
   align-items: center;
@@ -60,31 +71,47 @@
 .icon-button {
   background: none;
   border: none;
-  font-size: 22px;
   cursor: pointer;
-  padding: 5px;
+  padding: 8px;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background-color 0.2s;
 }
 
 .icon-button:hover {
-  background-color: #f3f4f6;
+  background-color: var(--border-color);
+}
+
+.theme-icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.theme-icon.rotate {
+  transform: rotate(360deg);
+}
+
+/* --- SELECTOR DE IDIOMA --- */
+.language-dropdown-container {
+  position: relative;
 }
 
 .language-selector {
-  position: relative;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 5px 10px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   transition: background-color 0.2s;
 }
 
 .language-selector:hover {
-  background-color: #f9fafb;
+  background-color: var(--border-color);
 }
 
 .flag-icon {
@@ -97,32 +124,28 @@
 .lang-text {
   font-weight: 600;
   font-size: 14px;
-  color: #374151;
+  color: var(--text-main);
 }
 
 .arrow-down {
   font-size: 12px;
-  color: #6b7280;
+  color: var(--text-muted);
 }
 
-/* Estilos nuevos para el menú desplegable */
-.language-dropdown-container {
-  position: relative; /* Clave para que el menú flote justo debajo de esto */
-}
-
+/* --- MENÚ DESPLEGABLE --- */
 .dropdown-menu {
   position: absolute;
-  top: 110%; /* Lo empuja justo debajo del botón */
+  top: 110%;
   right: 0;
-  background-color: white;
-  border: 1px solid #e5e7eb;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   list-style: none;
   padding: 5px 0;
   margin: 0;
   width: 100px;
-  z-index: 50; /* Lo pone por encima de todo */
+  z-index: 50;
 }
 
 .dropdown-item {
@@ -134,9 +157,14 @@
   transition: background-color 0.2s;
   font-weight: 600;
   font-size: 14px;
-  color: #374151;
+  color: var(--text-main);
 }
 
 .dropdown-item:hover {
-  background-color: #f3f4f6;
+  background-color: var(--border-color);
+}
+
+/* Truco para invertir el logo negro a blanco si está en modo oscuro */
+:host-context(body.dark) .logo-image {
+  filter: invert(1) brightness(2);
 }

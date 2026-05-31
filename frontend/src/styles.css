@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+/* =========================================
+   SISTEMA DE TEMAS (Variables Globales)
+   ========================================= */
+:root {
+  /* TEMA CLARO (Light Mode - Food Vibe) */
+  --bg-main: #f9fafb;        /* Fondo general casi blanco */
+  --bg-surface: #ffffff;     /* Fondo de tarjetas y header */
+  --text-main: #111827;      /* Texto principal casi negro */
+  --text-muted: #4b5563;     /* Texto secundario gris oscuro */
+  --border-color: #e5e7eb;   /* Bordes sutiles */
+
+  /* El "Rojo Restaurante" elegante (tipo KFC/Coca-Cola pero moderno) */
+  --accent-color: #d32f2f;
+  --accent-hover: #b71c1c;
+}
+
+body.dark {
+  /* TEMA OSCURO (Dark Mode - Admin Vibe Neutro) */
+  --bg-main: #121212;        /* Fondo general súper oscuro */
+  --bg-surface: #1e1e1e;     /* Fondo de tarjetas y header (gris carbón) */
+  --text-main: #f3f4f6;      /* Texto principal blanco roto */
+  --text-muted: #9ca3af;     /* Texto secundario gris claro */
+  --border-color: #333333;   /* Bordes oscuros */
+
+  /* Acentos en gris neutro para no fatigar la vista */
+  --accent-color: #4b5563;
+  --accent-hover: #6b7280;
+}
+
+/* =========================================
+   ESTILOS BASE DE LA APLICACIÓN
+   ========================================= */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+}

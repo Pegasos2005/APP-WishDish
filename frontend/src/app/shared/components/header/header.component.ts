@@ -12,14 +12,15 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class HeaderComponent {
   showBackButton: boolean = true;
   userName: string = 'Paco'; // Más adelante esto vendrá de Firebase
+  isDarkMode: boolean = false;
 
   // Lógica del desplegable
   isLangMenuOpen: boolean = false;
 
   // Nuestra lista de idiomas
   languages = [
-    { code: 'es', name: 'ES', flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg' },
-    { code: 'en', name: 'EN', flag: 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg' }
+    { code: 'es', name: 'ES', flag: '/header/flags/spain.svg' },
+    { code: 'en', name: 'EN', flag: '/header/flags/united-kingdom.svg' }
   ];
 
   // Idioma seleccionado por defecto
@@ -43,5 +44,16 @@ export class HeaderComponent {
     this.currentLang = lang;
     this.translate.use(lang.code); // Esta línea cambia toda la web de idioma
     this.isLangMenuOpen = false;   // Cerramos el menú
+  }
+
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+
+    // Inyectamos o quitamos la clase 'dark' del cuerpo principal de la web
+    if (this.isDarkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
   }
 }

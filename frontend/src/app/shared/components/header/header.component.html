@@ -11,12 +11,20 @@
   </div>
 
   <div class="header-center">
-    <h2 class="logo-text">WishDish</h2>
+    <div class="logo-wrapper">
+      <img src="/header/logo.png" alt="WishDish-logo" class="logo-image">
+    </div>
   </div>
 
   <div class="header-right">
 
-    <button class="icon-button" title="Activar modo oscuro">🌙</button>
+    <button class="icon-button theme-toggle-btn" (click)="toggleDarkMode()" [title]="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'">
+      <img
+        [src]="isDarkMode ? '/header/light-sun.svg' : '/header/dark-moon.svg'"
+        alt="DarkModeButton"
+        class="theme-icon"
+        [class.rotate]="isDarkMode">
+    </button>
 
     <div class="language-dropdown-container">
 
