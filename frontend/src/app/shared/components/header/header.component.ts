@@ -15,7 +15,7 @@ export class HeaderComponent {
   showBackButton: boolean = true;
   welcomeText: boolean = true;
   userName: string = 'Paco'; // Más adelante esto vendrá de Firebase
-  isDarkMode: boolean = false;
+  isDarkMode: boolean = true;
 
   // Lógica del desplegable
   isLangMenuOpen: boolean = false;
@@ -33,6 +33,8 @@ export class HeaderComponent {
   currentLang = this.languages[0];
 
   constructor(private translate: TranslateService, private router: Router, private activatedRoute: ActivatedRoute) {
+    // Le decimos q empiece en oscuro
+    document.body.classList.add('dark');
     // Le decimos a Angular que empiece en inglés (lo que ya tenías)
     this.translate.setDefaultLang('en');
     this.translate.use('en');
