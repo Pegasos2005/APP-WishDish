@@ -19,8 +19,11 @@ export class HeaderComponent {
 
   // Nuestra lista de idiomas
   languages = [
-    { code: 'es', name: 'ES', flag: '/header/flags/spain.svg' },
-    { code: 'en', name: 'EN', flag: '/header/flags/united-kingdom.svg' }
+    { code: 'en', name: 'English', flag: '/header/flags/united-kingdom.svg' },
+    { code: 'es', name: 'Español', flag: '/header/flags/spain.svg' },
+    { code: 'de', name: 'Deutsch', flag: '/header/flags/germany.svg' },
+    { code: 'sv', name: 'Svenska', flag: '/header/flags/sweden.svg' },
+    { code: 'fr', name: 'Français', flag: '/header/flags/france.svg' }
   ];
 
   // Idioma seleccionado por defecto
@@ -28,8 +31,8 @@ export class HeaderComponent {
 
   constructor(private translate: TranslateService) {
     // Le decimos a Angular que empiece en español
-    this.translate.setDefaultLang('es');
-    this.translate.use('es');
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
   }
 
   goBack() {
@@ -41,6 +44,12 @@ export class HeaderComponent {
   }
 
   changeLanguage(lang: any) {
+    const notImplemented = ['de', 'sv', 'fr'];
+    if (notImplemented.includes(lang.code)) {
+      alert("This language is not implemented yet");
+      this.isLangMenuOpen = false;
+      return;
+     }
     this.currentLang = lang;
     this.translate.use(lang.code); // Esta línea cambia toda la web de idioma
     this.isLangMenuOpen = false;   // Cerramos el menú
