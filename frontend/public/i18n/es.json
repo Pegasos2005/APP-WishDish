@@ -2,5 +2,14 @@
   "HEADER": {
     "WELCOME": "Bienvenido",
     "BACK": "Retroceder"
+  },
+  "LOGIN": {
+    "LOGIN": "Iniciar Sesión",
+    "EMAIL": "Correo electrónico",
+    "EMAIL_PLACEHOLDER": "admin@restaurante.com",
+    "PASSWORD": "Contraseña",
+    "PASSWORD_PLACEHOLDER": "Mínimo 6 caracteres",
+    "ENTER": "Entrar",
+    "REGISTER": "¿Primer acceso? Regístrate"
   }
 }

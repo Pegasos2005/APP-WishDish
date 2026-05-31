@@ -104,14 +104,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 10px;
-  border: 1px solid var(--border-color);
+  padding: 8px 10px;
+  border: 1.5px solid var(--border-color-stronger);
   border-radius: 8px;
   transition: background-color 0.2s;
 }
 
 .language-selector:hover {
-  background-color: var(--border-color);
+  background-color: var(--border-color-stronger);
 }
 
 .flag-icon {

@@ -8,6 +8,7 @@
   --text-main: #111827;      /* Texto principal casi negro */
   --text-muted: #4b5563;     /* Texto secundario gris oscuro */
   --border-color: #e5e7eb;   /* Bordes sutiles */
+  --border-color-stronger: #aaaaaa;   /* Bordes notorios */
 
   /* El "Rojo Restaurante" elegante (tipo KFC/Coca-Cola pero moderno) */
   --accent-color: #d32f2f;
@@ -21,6 +22,7 @@ body.dark {
   --text-main: #f3f4f6;      /* Texto principal blanco roto */
   --text-muted: #9ca3af;     /* Texto secundario gris claro */
   --border-color: #333333;   /* Bordes oscuros */
+  --border-color-stronger: #666666;   /* Bordes notorios */
 
   /* Acentos en gris neutro para no fatigar la vista */
   --accent-color: #4b5563;
