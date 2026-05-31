@@ -1,22 +1,27 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  // 1. Cuando el usuario entra a la raíz (localhost:4200), lo redirigimos al login
+  // 1. Si entran a la raíz, los mandamos a owner-intro/login
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'owner-intro/login',
     pathMatch: 'full'
   },
 
-  // 2. Ruta de Login con "Lazy Loading" (apuntando a tu nueva estructura)
+  // 2. Ruta Padre (El Layout que contiene el Header)
   {
-    path: 'login',
-    loadComponent: () => import('./features/owner-intro/auth/login/login.component').then(m => m.LoginComponent)
-  },
+    path: 'owner-intro',
+    loadComponent: () => import('./shared/layouts/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
 
-  // 3. Ruta a la que va después de loguearse (La crearemos más adelante, por ahora la dejamos vacía o apuntando a un componente futuro)
-  // {
-  //   path: 'owner-intro',
-  //   loadComponent: () => import('./features/owner-intro/intro-options.component').then(m => m.IntroOptionsComponent)
-  // }
+    // 3. Rutas Hijas (Se incrustarán debajo del Header)
+    children: [
+      {
+        path: 'login', // La ruta real será: localhost:4200/owner-intro/login
+        loadComponent: () => import('./features/owner-intro/auth/login/login.component').then(m => m.LoginComponent)
+      }
+      // Aquí añadiremos más adelante:
+      // { path: 'options', loadComponent: () => ... }
+      // { path: 'new-local', loadComponent: () => ... }
+    ]
+  }
 ];
