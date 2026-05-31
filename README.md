@@ -1,4 +1,4 @@
-
+Download link: "Soon..."
 
 Tecnologies:
 Firebase
@@ -7,6 +7,11 @@ Node.js -> Angular
 Maven -> Spring Boot
 MySQL 8.0
 (Pasarle el archivo docker-compose y q lo haga gemini)
+
+Libraries:
+App translator:
+@ngx-translate/core
+
 
 Comands:
 docker-compose up -d
