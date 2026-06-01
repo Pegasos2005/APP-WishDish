@@ -20,6 +20,11 @@ export const routes: Routes = [
         path: 'login', // La ruta real será: localhost:4200/owner-intro/login
         loadComponent: () => import('./features/owner-intro/auth/login/login.component').then(m => m.LoginComponent),
         data: { showBackButton: false, welcomeText: false  }
+      },
+      {
+        path: 'register',
+        loadComponent: () => import('./features/owner-intro/auth/register/register.component').then(m => m.RegisterComponent),
+        data: { showBackButton: false, welcomeText: false }
       }
       // Aquí añadiremos más adelante:
       // { path: 'options', loadComponent: () => ... }

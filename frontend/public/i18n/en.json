@@ -11,5 +11,16 @@
     "PASSWORD_PLACEHOLDER": "Minimum 6 characters",
     "ENTER": "Enter",
     "REGISTER": "First access? Register"
+  },
+  "REGISTER": {
+    "TITLE": "Register your Restaurant",
+    "EMAIL": "Email",
+    "EMAIL_PLACEHOLDER": "admin@restaurant.com",
+    "PASSWORD": "Password",
+    "PASSWORD_PLACEHOLDER": "Minimum 6 characters",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "CONFIRM_PLACEHOLDER": "Repeat your password",
+    "SUBMIT": "Create Account",
+    "GO_LOGIN": "Already have an account? Login"
   }
 }

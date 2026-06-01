@@ -1,0 +1,66 @@
+<div class="login-wrapper">
+
+  <h2 class="login-title">
+    {{ 'REGISTER.TITLE' | translate }}
+  </h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div class="input-group">
+    <label>{{ 'REGISTER.EMAIL' | translate }}:</label>
+    <input
+      type="email"
+      [(ngModel)]="email"
+      class="input-field"
+      [placeholder]="'REGISTER.EMAIL_PLACEHOLDER' | translate">
+  </div>
+
+  <div class="input-group">
+    <label>{{ 'REGISTER.PASSWORD' | translate }}:</label>
+
+    <div class="password-wrapper">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        [(ngModel)]="password"
+        class="input-field"
+        [placeholder]="'REGISTER.PASSWORD_PLACEHOLDER' | translate">
+
+      <button class="eye-btn" (click)="togglePassword()" type="button" tabindex="-1">
+        <img
+          [src]="showPassword ? '/login-register/open-eye.svg' : '/login-register/slash-eye.svg'"
+          alt="Mostrar/Ocultar contraseña"
+          class="eye-icon">
+      </button>
+    </div>
+  </div>
+
+  <div class="input-group" style="margin-bottom: 25px;">
+    <label>{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}:</label>
+
+    <div class="password-wrapper">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        [(ngModel)]="confirmPassword"
+        class="input-field"
+        [placeholder]="'REGISTER.CONFIRM_PLACEHOLDER' | translate">
+
+      <button class="eye-btn" (click)="togglePassword()" type="button" tabindex="-1">
+        <img
+          [src]="showPassword ? '/login-register/open-eye.svg' : '/login-register/slash-eye.svg'"
+          alt="Mostrar/Ocultar contraseña"
+          class="eye-icon">
+      </button>
+    </div>
+  </div>
+
+  <button (click)="onSubmit()" class="submit-btn">
+    {{ 'REGISTER.SUBMIT' | translate }}
+  </button>
+
+  <p class="register-link" (click)="goToLogin()">
+    {{ 'REGISTER.GO_LOGIN' | translate }}
+  </p>
+
+</div>

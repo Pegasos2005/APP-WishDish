@@ -1,0 +1,144 @@
+/* Contenedor de la tarjeta */
+.login-wrapper {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  background-color: var(--bg-surface);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-title {
+  text-align: center;
+  color: var(--text-main);
+  margin-bottom: 25px;
+}
+
+/* Caja de error */
+.error-message {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Suavizamos el error en modo oscuro para que no deslumbre */
+:host-context(body.dark) .error-message {
+  background-color: rgba(220, 38, 38, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+/* Campos de formulario */
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+/* --- Contenedor de la contraseña --- */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Le damos espacio a la derecha al input para que el texto no pise el ojo */
+.password-wrapper .input-field {
+  padding-right: 40px;
+}
+
+/* El botón del ojo */
+.eye-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: color 0.3s;
+}
+
+.eye-btn:hover {
+  color: var(--text-main);
+}
+
+.eye-icon {
+  width: 20px;
+  height: 20px;
+  transition: filter 0.3s ease;
+}
+
+/* Magia del Dark Mode:
+  Como la imagen es negra por defecto, cuando la app entre en modo oscuro
+  invertimos sus colores al 100% para que se vuelva totalmente blanca.
+*/
+:host-context(body.dark) .eye-icon {
+  filter: invert(1) brightness(2);
+}
+
+/* Botón Principal */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Enlace a Registro */
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+  cursor: pointer;
+  color: var(--accent-color);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.register-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
