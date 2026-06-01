@@ -8,8 +8,46 @@
     {{ errorMessage }}
   </div>
 
+  <div class="form-row">
+    <div class="input-group">
+      <label>{{ 'REGISTER.FIRST_NAME' | translate }}</label>
+      <input type="text" [(ngModel)]="firstName" class="input-field" [placeholder]="'REGISTER.FIRST_NAME_PLACEHOLDER' | translate">
+    </div>
+
+    <div class="input-group">
+      <label>{{ 'REGISTER.LAST_NAME' | translate }}</label>
+      <input type="text" [(ngModel)]="lastName" class="input-field" placeholder="Doe">
+    </div>
+  </div>
+
   <div class="input-group">
-    <label>{{ 'REGISTER.EMAIL' | translate }}:</label>
+    <label>{{ 'REGISTER.PHONE' | translate }}</label>
+    <input type="tel" [(ngModel)]="phone" class="input-field" placeholder="+34 600 000 000">
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+
+  <div class="input-group">
+    <label>{{ 'REGISTER.RESTAURANT_NAME' | translate }}</label>
+    <input type="text" [(ngModel)]="restaurantName" class="input-field" placeholder="Burger King">
+  </div>
+
+  <div class="form-row">
+    <div class="input-group">
+      <label>{{ 'REGISTER.CITY' | translate }}</label>
+      <input type="text" [(ngModel)]="city" class="input-field" placeholder="Madrid">
+    </div>
+
+    <div class="input-group">
+      <label>{{ 'REGISTER.COUNTRY' | translate }}</label>
+      <input type="text" [(ngModel)]="country" class="input-field" placeholder="España">
+    </div>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+
+  <div class="input-group">
+    <label>{{ 'REGISTER.EMAIL' | translate }}</label>
     <input
       type="email"
       [(ngModel)]="email"
@@ -17,41 +55,33 @@
       [placeholder]="'REGISTER.EMAIL_PLACEHOLDER' | translate">
   </div>
 
-  <div class="input-group">
-    <label>{{ 'REGISTER.PASSWORD' | translate }}:</label>
-
-    <div class="password-wrapper">
-      <input
-        [type]="showPassword ? 'text' : 'password'"
-        [(ngModel)]="password"
-        class="input-field"
-        [placeholder]="'REGISTER.PASSWORD_PLACEHOLDER' | translate">
-
-      <button class="eye-btn" (click)="togglePassword()" type="button" tabindex="-1">
-        <img
-          [src]="showPassword ? '/login-register/open-eye.svg' : '/login-register/slash-eye.svg'"
-          alt="Mostrar/Ocultar contraseña"
-          class="eye-icon">
-      </button>
+  <div class="form-row" style="margin-bottom: 25px;">
+    <div class="input-group">
+      <label>{{ 'REGISTER.PASSWORD' | translate }}</label>
+      <div class="password-wrapper">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="password"
+          class="input-field"
+          [placeholder]="'REGISTER.PASSWORD_PLACEHOLDER' | translate">
+        <button class="eye-btn" (click)="togglePassword()" type="button" tabindex="-1">
+          <img [src]="showPassword ? '/login-register/open-eye.svg' : '/login-register/slash-eye.svg'" class="eye-icon">
+        </button>
+      </div>
     </div>
-  </div>
 
-  <div class="input-group" style="margin-bottom: 25px;">
-    <label>{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}:</label>
-
-    <div class="password-wrapper">
-      <input
-        [type]="showPassword ? 'text' : 'password'"
-        [(ngModel)]="confirmPassword"
-        class="input-field"
-        [placeholder]="'REGISTER.CONFIRM_PLACEHOLDER' | translate">
-
-      <button class="eye-btn" (click)="togglePassword()" type="button" tabindex="-1">
-        <img
-          [src]="showPassword ? '/login-register/open-eye.svg' : '/login-register/slash-eye.svg'"
-          alt="Mostrar/Ocultar contraseña"
-          class="eye-icon">
-      </button>
+    <div class="input-group">
+      <label>{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</label>
+      <div class="password-wrapper">
+        <input
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          [(ngModel)]="confirmPassword"
+          class="input-field"
+          [placeholder]="'REGISTER.CONFIRM_PLACEHOLDER' | translate">
+        <button class="eye-btn" (click)="toggleConfirmPassword()" type="button" tabindex="-1">
+          <img [src]="showConfirmPassword ? '/login-register/open-eye.svg' : '/login-register/slash-eye.svg'" class="eye-icon">
+        </button>
+      </div>
     </div>
   </div>
 

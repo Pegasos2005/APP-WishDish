@@ -13,12 +13,25 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  // Datos del Usuario
+  firstName: string = '';
+  lastName: string = '';
+  phone: string = '';
+
+  // Datos del Restaurante
+  restaurantName: string = '';
+  city: string = '';
+  country: string = '';
+
+  // Credenciales
   email: string = '';
   password: string = '';
-  confirmPassword: string = ''; // Nuevo campo vital
+  confirmPassword: string = '';
   errorMessage: string = '';
 
-  showPassword: boolean = false; // Controla el ojito de ambas contraseñas
+  // Controladores independientes para los ojitos
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -26,10 +39,14 @@ export class RegisterComponent {
     this.showPassword = !this.showPassword;
   }
 
+  toggleConfirmPassword() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
+
   onSubmit() {
     // 1. Validaciones previas
-    if (!this.email || !this.password || !this.confirmPassword) {
-      this.errorMessage = 'Por favor, rellena todos los campos.';
+    if (!this.firstName || !this.lastName || !this.restaurantName || !this.email || !this.password || !this.confirmPassword) {
+      this.errorMessage = 'Por favor, rellena todos los campos obligatorios.';
       return;
     }
 
@@ -38,14 +55,18 @@ export class RegisterComponent {
       return;
     }
 
-    // 2. Llamada a Firebase
+    // 2. Llamada a Firebase (Más adelante guardaremos el resto de datos en la DB)
     this.authService.register(this.email, this.password)
       .then(() => {
-        console.log('¡Restaurante registrado con éxito!');
+        console.log('¡Cuenta creada! Datos listos para guardar en DB:', {
+          user: `${this.firstName} ${this.lastName}`,
+          phone: this.phone,
+          restaurant: this.restaurantName,
+          location: `${this.city}, ${this.country}`
+        });
         this.router.navigate(['/owner-intro']);
       })
       .catch(err => {
-        // Firebase devuelve errores en inglés por defecto, aquí los capturamos
         if (err.code === 'auth/email-already-in-use') {
           this.errorMessage = 'Este correo ya está registrado.';
         } else if (err.code === 'auth/weak-password') {
