@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../core/services/owner-intro/auth.service';
 import { filter } from 'rxjs';
 
 @Component({
@@ -14,13 +15,9 @@ import { filter } from 'rxjs';
 export class HeaderComponent {
   showBackButton: boolean = true;
   welcomeText: boolean = true;
-  userName: string = 'Paco'; // Más adelante esto vendrá de Firebase
+  userName: string = '';
   isDarkMode: boolean = true;
-
-  // Lógica del desplegable
   isLangMenuOpen: boolean = false;
-
-  // Nuestra lista de idiomas
   languages = [
     { code: 'en', name: 'English', flag: '/header/flags/united-kingdom.svg' },
     { code: 'es', name: 'Español', flag: '/header/flags/spain.svg' },
@@ -28,11 +25,9 @@ export class HeaderComponent {
     { code: 'sv', name: 'Svenska', flag: '/header/flags/sweden.svg' },
     { code: 'fr', name: 'Français', flag: '/header/flags/france.svg' }
   ];
+  currentLang = this.languages[0]; // Idioma seleccionado por defecto
 
-  // Idioma seleccionado por defecto
-  currentLang = this.languages[0];
-
-  constructor(private translate: TranslateService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private authService: AuthService, private translate: TranslateService, private router: Router, private activatedRoute: ActivatedRoute) {
     // Le decimos q empiece en oscuro
     document.body.classList.add('dark');
     // Le decimos a Angular que empiece en inglés (lo que ya tenías)
@@ -40,7 +35,7 @@ export class HeaderComponent {
     this.translate.use('en');
 
     // --- NUEVA LÓGICA DEL HEADER DINÁMICO ---
-    // Escuchamos cada vez que el usuario termina de navegar a una nueva pantalla
+    // Escuchador de Rutas (Oculta botones en función de lo definido en app.routes.ts)
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
@@ -57,6 +52,22 @@ export class HeaderComponent {
       // Actualizamos las variables. Si la ruta no dice nada, por defecto serán true.
       this.showBackButton = data['showBackButton'] ?? true;
       this.welcomeText = data['welcomeText'] ?? true;
+    });
+
+    // 2. NUEVO: Escuchador de Usuario
+    this.authService.user$.subscribe(async (user) => {
+      if (user) {
+        // Si hay un usuario logueado, vamos a Firestore a por su nombre
+        const profile = await this.authService.getOwnerProfile(user.uid);
+        if (profile && profile['firstName']) {
+          this.userName = profile['firstName'];
+        } else {
+          this.userName = 'Undefined name'
+        }
+      } else {
+        // Si no hay nadie logueado (cerró sesión), limpiamos el nombre
+        this.userName = 'User not register';
+      }
     });
   }
 

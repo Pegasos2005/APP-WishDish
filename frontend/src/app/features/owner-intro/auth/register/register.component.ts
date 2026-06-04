@@ -57,6 +57,26 @@ export class RegisterComponent {
 
     // 2. Llamada a Firebase (Más adelante guardaremos el resto de datos en la DB)
     this.authService.register(this.email, this.password)
+      .then((userCredential) => {
+            // ¡Éxito en Auth! Extraemos el UID único del nuevo usuario
+            const uid = userCredential.user.uid;
+
+            // Preparamos el paquete de datos para Firestore
+            const ownerProfile = {
+              firstName: this.firstName,
+              lastName: this.lastName,
+              phone: this.phone,
+              restaurantName: this.restaurantName,
+              city: this.city,
+              country: this.country,
+              email: this.email,
+              role: 'OWNER', // Etiqueta muy útil para el futuro
+              createdAt: new Date().toISOString() // Fecha de registro
+            };
+
+            // Guardamos en Firestore usando nuestra nueva función
+            return this.authService.saveOwnerData(uid, ownerProfile);
+          })
       .then(() => {
         console.log('¡Cuenta creada! Datos listos para guardar en DB:', {
           user: `${this.firstName} ${this.lastName}`,

@@ -16,13 +16,13 @@
 
     <div class="input-group">
       <label>{{ 'REGISTER.LAST_NAME' | translate }}</label>
-      <input type="text" [(ngModel)]="lastName" class="input-field" placeholder="Doe">
+      <input type="text" [(ngModel)]="lastName" class="input-field" [placeholder]="'REGISTER.LAST_NAME_PLACEHOLDER' | translate">
     </div>
   </div>
 
   <div class="input-group">
     <label>{{ 'REGISTER.PHONE' | translate }}</label>
-    <input type="tel" [(ngModel)]="phone" class="input-field" placeholder="+34 600 000 000">
+    <input type="tel" [(ngModel)]="phone" class="input-field" [placeholder]="'REGISTER.PHONE_PLACEHOLDER' | translate">
   </div>
 
   <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
@@ -35,12 +35,12 @@
   <div class="form-row">
     <div class="input-group">
       <label>{{ 'REGISTER.CITY' | translate }}</label>
-      <input type="text" [(ngModel)]="city" class="input-field" placeholder="Madrid">
+      <input type="text" [(ngModel)]="city" class="input-field" [placeholder]="'REGISTER.CITY_PLACEHOLDER' | translate">
     </div>
 
     <div class="input-group">
       <label>{{ 'REGISTER.COUNTRY' | translate }}</label>
-      <input type="text" [(ngModel)]="country" class="input-field" placeholder="España">
+      <input type="text" [(ngModel)]="country" class="input-field" [placeholder]="'REGISTER.COUNTRY_PLACEHOLDER' | translate">
     </div>
   </div>
 
