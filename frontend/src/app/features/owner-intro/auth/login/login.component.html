@@ -4,40 +4,85 @@
     {{ 'LOGIN.LOGIN' | translate }}
   </h2>
 
+  <div class="tabs-container">
+    <button
+      class="tab-button"
+      [class.active]="loginMode === 'email'"
+      (click)="switchMode('email')">
+      📧 {{ 'LOGIN.EMAIL' | translate }}
+    </button>
+    <button
+      class="tab-button"
+      [class.active]="loginMode === 'phone'"
+      (click)="switchMode('phone')">
+      📱 {{ 'LOGIN.PHONE' | translate }}
+    </button>
+  </div>
+
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
 
-  <div class="input-group">
-    <label>{{ 'LOGIN.EMAIL' | translate }}</label>
-    <input
-      type="email"
-      [(ngModel)]="email"
-      class="input-field"
-      placeholder="{{ 'LOGIN.EMAIL_PLACEHOLDER' | translate }}">
+  <div id="recaptcha-container"></div>
+
+  <div *ngIf="loginMode === 'email'">
+    <div class="input-group">
+      <label>{{ 'LOGIN.EMAIL' | translate }}</label>
+      <input
+        type="email"
+        [(ngModel)]="email"
+        class="input-field"
+        placeholder="{{ 'LOGIN.EMAIL_PLACEHOLDER' | translate }}">
+    </div>
+
+    <div class="input-group" style="margin-bottom: 25px;">
+      <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
+      <div class="password-wrapper">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="password"
+          class="input-field"
+          [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate">
+
+        <button class="eye-btn" (click)="togglePassword()" type="button" tabindex="-1">
+          <img
+            [src]="showPassword ? '/login-register/open-eye.svg' : '/login-register/slash-eye.svg'"
+            alt="Mostrar/Ocultar contraseña"
+            class="eye-icon">
+        </button>
+      </div>
+    </div>
+
+    <button (click)="onEmailSubmit()" class="submit-btn">
+      {{ 'LOGIN.ENTER' | translate }}
+    </button>
   </div>
 
-  <div class="input-group" style="margin-bottom: 25px;">
-    <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
-    <div class="password-wrapper">
-      <input
-        [type]="showPassword ? 'text' : 'password'"
-        [(ngModel)]="password"
-        class="input-field"
-        [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate">
+  <div *ngIf="loginMode === 'phone'">
 
-      <button class="eye-btn" (click)="togglePassword()" type="button">
-        <img
-          [src]="showPassword ? '/login-register/open-eye.svg' : '/login-register/slash-eye.svg'"
-          alt="Mostrar/Ocultar contraseña"
-          class="eye-icon">
+    <div *ngIf="!codeSent" class="input-group" style="margin-bottom: 25px;">
+      <label>{{ 'LOGIN.NUMBER_PHONE' | translate }}</label>
+      <input type="tel" [(ngModel)]="phone" class="input-field" [placeholder]="'LOGIN.NUMBER_PHONE_PLACEHOLDER' | translate">
+      <p class="help-text">{{ 'LOGIN.PHONE_METHOD_DESCRIPTION' | translate }}</p>
+
+      <button (click)="onSendSms()" class="submit-btn">
+        {{ 'LOGIN.SEND_SMS' | translate }}
+      </button>
+    </div>
+
+    <div *ngIf="codeSent" class="input-group" style="margin-bottom: 25px;">
+      <label>Código de Seguridad (6 dígitos):</label>
+      <input type="text" [(ngModel)]="smsCode" class="input-field code-input" placeholder="123456" maxlength="6">
+
+      <button (click)="onVerifyCode()" class="submit-btn" style="margin-top: 15px;">
+        Verificar y Entrar
+      </button>
+
+      <button (click)="codeSent = false" class="change-phone-btn">
+        Cambiar número
       </button>
     </div>
   </div>
-
-  <button (click)="onSubmit()" class="submit-btn">
-    {{ 'LOGIN.ENTER' | translate }}
-  </button>
 
   <p class="register-link" (click)="goToRegister()">
     {{ 'LOGIN.REGISTER' | translate }}

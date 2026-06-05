@@ -142,3 +142,62 @@
   color: var(--accent-hover);
   text-decoration: underline;
 }
+
+/* --- ESTILOS PARA LAS PESTAÑAS (Email / Teléfono) --- */
+.tabs-container {
+  display: flex;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--text-muted);
+  transition: color 0.3s, border-bottom-color 0.3s;
+  margin-bottom: -2px; /* Superpone el borde con el del contenedor */
+}
+
+.tab-button:hover {
+  color: var(--text-main);
+}
+
+.tab-button.active {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+/* --- ESTILOS EXTRAS PARA EL FORMULARIO DE TELÉFONO --- */
+.help-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.code-input {
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 5px;
+  font-weight: bold;
+}
+
+.change-phone-btn {
+  width: 100%;
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.change-phone-btn:hover {
+  color: var(--text-main);
+}

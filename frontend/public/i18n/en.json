@@ -6,9 +6,14 @@
   "LOGIN": {
     "LOGIN": "Login",
     "EMAIL": "Email",
+    "PHONE": "Phone",
     "EMAIL_PLACEHOLDER": "admin@restaurant.com",
     "PASSWORD": "Password",
     "PASSWORD_PLACEHOLDER": "Minimum 6 characters",
+    "NUMBER_PHONE": "Phone number (with prefix)",
+    "NUMBER_PHONE_PLACEHOLDER": "+44 770 000000",
+    "PHONE_METHOD_DESCRIPTION": "You will get a free SMS with a code of 6 digits.",
+    "SEND_SMS": "Send SMS",
     "ENTER": "Enter",
     "REGISTER": "First access? Register"
   },

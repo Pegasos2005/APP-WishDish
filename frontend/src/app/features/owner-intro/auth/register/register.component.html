@@ -8,86 +8,110 @@
     {{ errorMessage }}
   </div>
 
-  <div class="form-row">
-    <div class="input-group">
-      <label>{{ 'REGISTER.FIRST_NAME' | translate }}</label>
-      <input type="text" [(ngModel)]="firstName" class="input-field" [placeholder]="'REGISTER.FIRST_NAME_PLACEHOLDER' | translate">
-    </div>
+  <div id="recaptcha-register"></div>
 
-    <div class="input-group">
-      <label>{{ 'REGISTER.LAST_NAME' | translate }}</label>
-      <input type="text" [(ngModel)]="lastName" class="input-field" [placeholder]="'REGISTER.LAST_NAME_PLACEHOLDER' | translate">
-    </div>
-  </div>
+  <div *ngIf="registrationStep === 1">
 
-  <div class="input-group">
-    <label>{{ 'REGISTER.PHONE' | translate }}</label>
-    <input type="tel" [(ngModel)]="phone" class="input-field" [placeholder]="'REGISTER.PHONE_PLACEHOLDER' | translate">
-  </div>
+    <div class="form-row">
+      <div class="input-group">
+        <label>{{ 'REGISTER.FIRST_NAME' | translate }}</label>
+        <input type="text" [(ngModel)]="firstName" class="input-field" [placeholder]="'REGISTER.FIRST_NAME_PLACEHOLDER' | translate">
+      </div>
 
-  <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
-
-  <div class="input-group">
-    <label>{{ 'REGISTER.RESTAURANT_NAME' | translate }}</label>
-    <input type="text" [(ngModel)]="restaurantName" class="input-field" placeholder="Burger King">
-  </div>
-
-  <div class="form-row">
-    <div class="input-group">
-      <label>{{ 'REGISTER.CITY' | translate }}</label>
-      <input type="text" [(ngModel)]="city" class="input-field" [placeholder]="'REGISTER.CITY_PLACEHOLDER' | translate">
-    </div>
-
-    <div class="input-group">
-      <label>{{ 'REGISTER.COUNTRY' | translate }}</label>
-      <input type="text" [(ngModel)]="country" class="input-field" [placeholder]="'REGISTER.COUNTRY_PLACEHOLDER' | translate">
-    </div>
-  </div>
-
-  <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
-
-  <div class="input-group">
-    <label>{{ 'REGISTER.EMAIL' | translate }}</label>
-    <input
-      type="email"
-      [(ngModel)]="email"
-      class="input-field"
-      [placeholder]="'REGISTER.EMAIL_PLACEHOLDER' | translate">
-  </div>
-
-  <div class="form-row" style="margin-bottom: 25px;">
-    <div class="input-group">
-      <label>{{ 'REGISTER.PASSWORD' | translate }}</label>
-      <div class="password-wrapper">
-        <input
-          [type]="showPassword ? 'text' : 'password'"
-          [(ngModel)]="password"
-          class="input-field"
-          [placeholder]="'REGISTER.PASSWORD_PLACEHOLDER' | translate">
-        <button class="eye-btn" (click)="togglePassword()" type="button" tabindex="-1">
-          <img [src]="showPassword ? '/login-register/open-eye.svg' : '/login-register/slash-eye.svg'" class="eye-icon">
-        </button>
+      <div class="input-group">
+        <label>{{ 'REGISTER.LAST_NAME' | translate }}</label>
+        <input type="text" [(ngModel)]="lastName" class="input-field" [placeholder]="'REGISTER.LAST_NAME_PLACEHOLDER' | translate">
       </div>
     </div>
 
     <div class="input-group">
-      <label>{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</label>
-      <div class="password-wrapper">
-        <input
-          [type]="showConfirmPassword ? 'text' : 'password'"
-          [(ngModel)]="confirmPassword"
-          class="input-field"
-          [placeholder]="'REGISTER.CONFIRM_PLACEHOLDER' | translate">
-        <button class="eye-btn" (click)="toggleConfirmPassword()" type="button" tabindex="-1">
-          <img [src]="showConfirmPassword ? '/login-register/open-eye.svg' : '/login-register/slash-eye.svg'" class="eye-icon">
-        </button>
+      <label>{{ 'REGISTER.PHONE' | translate }}</label>
+      <input type="tel" [(ngModel)]="phone" class="input-field" [placeholder]="'REGISTER.PHONE_PLACEHOLDER' | translate">
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+
+    <div class="input-group">
+      <label>{{ 'REGISTER.RESTAURANT_NAME' | translate }}</label>
+      <input type="text" [(ngModel)]="restaurantName" class="input-field" placeholder="Burger King">
+    </div>
+
+    <div class="form-row">
+      <div class="input-group">
+        <label>{{ 'REGISTER.CITY' | translate }}</label>
+        <input type="text" [(ngModel)]="city" class="input-field" [placeholder]="'REGISTER.CITY_PLACEHOLDER' | translate">
+      </div>
+
+      <div class="input-group">
+        <label>{{ 'REGISTER.COUNTRY' | translate }}</label>
+        <input type="text" [(ngModel)]="country" class="input-field" [placeholder]="'REGISTER.COUNTRY_PLACEHOLDER' | translate">
       </div>
     </div>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+
+      <!-- Email -->
+    <div class="input-group">
+      <label>{{ 'REGISTER.EMAIL' | translate }}</label>
+      <input
+        type="email"
+        [(ngModel)]="email"
+        class="input-field"
+        [placeholder]="'REGISTER.EMAIL_PLACEHOLDER' | translate">
+    </div>
+
+    <div class="form-row" style="margin-bottom: 25px;">
+      <div class="input-group">
+        <label>{{ 'REGISTER.PASSWORD' | translate }}</label>
+        <div class="password-wrapper">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+            class="input-field"
+            [placeholder]="'REGISTER.PASSWORD_PLACEHOLDER' | translate">
+          <button class="eye-btn" (click)="togglePassword()" type="button" tabindex="-1">
+            <img [src]="showPassword ? '/login-register/open-eye.svg' : '/login-register/slash-eye.svg'" class="eye-icon">
+          </button>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</label>
+        <div class="password-wrapper">
+          <input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            [(ngModel)]="confirmPassword"
+            class="input-field"
+            [placeholder]="'REGISTER.CONFIRM_PLACEHOLDER' | translate">
+          <button class="eye-btn" (click)="toggleConfirmPassword()" type="button" tabindex="-1">
+            <img [src]="showConfirmPassword ? '/login-register/open-eye.svg' : '/login-register/slash-eye.svg'" class="eye-icon">
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button (click)="onStep1Submit()" class="submit-btn">
+      Crear Cuenta y Verificar Móvil
+    </button>
   </div>
 
-  <button (click)="onSubmit()" class="submit-btn">
-    {{ 'REGISTER.SUBMIT' | translate }}
-  </button>
+  <div *ngIf="registrationStep === 2" style="text-align: center; padding: 20px 0;">
+    <div style="font-size: 40px; margin-bottom: 15px;">📱</div>
+    <h3 style="color: var(--text-main); margin-bottom: 10px;">Verifica tu teléfono</h3>
+    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">
+      Hemos enviado un código SMS al <strong>{{ phone }}</strong>.<br>
+      Escríbelo abajo para asegurar tu cuenta.
+    </p>
+
+    <div class="input-group" style="margin-bottom: 25px;">
+      <input type="text" [(ngModel)]="smsCode" class="input-field code-input" placeholder="123456" maxlength="6" style="text-align: center; font-size: 24px; letter-spacing: 8px; font-weight: bold;">
+    </div>
+
+    <button (click)="onVerifySms()" class="submit-btn">
+      {{ 'REGISTER.SUBMIT' | translate }}
+    </button>
+
+  </div>
 
   <p class="register-link" (click)="goToLogin()">
     {{ 'REGISTER.GO_LOGIN' | translate }}

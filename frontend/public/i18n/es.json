@@ -6,9 +6,14 @@
   "LOGIN": {
     "LOGIN": "Iniciar Sesión",
     "EMAIL": "Correo electrónico",
+    "PHONE": "Móvil",
     "EMAIL_PLACEHOLDER": "admin@restaurante.com",
     "PASSWORD": "Contraseña",
     "PASSWORD_PLACEHOLDER": "Mínimo 6 caracteres",
+    "NUMBER_PHONE": "Número de teléfono (con prefijo)",
+    "NUMBER_PHONE_PLACEHOLDER": "+34 600 000 000",
+    "PHONE_METHOD_DESCRIPTION": "Recibirás un SMS gratuito con un código de 6 dígitos.",
+    "SEND_SMS": "Enviar SMS",
     "ENTER": "Entrar",
     "REGISTER": "¿Primer acceso? Regístrate"
   },
