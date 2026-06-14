@@ -1,5 +1,6 @@
 <header class="header-container">
 
+  <!-- Retroceso y txt d bienvenida -->
   <div class="header-left">
     <!-- Botón de retroceso -->
     <button *ngIf="showBackButton" (click)="goBack()" class="back-button">
@@ -20,25 +21,26 @@
 
   <div class="header-right">
 
-    <button class="icon-button theme-toggle-btn" (click)="toggleDarkMode()" [title]="isDarkMode ? 'Modo Claro' : 'Modo Oscuro'">
+    <button class="icon-button theme-toggle-btn" (click)="toggleDarkMode()" [title]="isDarkMode ? 'Dark Mode' : 'Light Mode'">
       <img
-        [src]="isDarkMode ? '/header/light-sun.svg' : '/header/dark-moon.svg'"
-        alt="DarkModeButton"
         class="theme-icon"
+        alt="DarkModeButton"
+        [src]="isDarkMode ? '/header/light-sun.svg' : '/header/dark-moon.svg'"
         [class.rotate]="isDarkMode">
     </button>
 
     <div class="language-dropdown-container">
 
+      <!-- Idioma seleccionado -->
       <div class="language-selector" (click)="toggleLangMenu()">
-        <img [src]="currentLang.flag" [alt]="currentLang.name" class="flag-icon">
+        <img [src]="currentLang.flag" [alt]="currentLang.name" class="flag-icon" alt="LanguageFlagSelected">
         <span class="lang-text">{{ currentLang.name }}</span>
         <span class="arrow-down">▼</span>
       </div>
-
+      <!-- Desplegable de idiomas -->
       <ul class="dropdown-menu" *ngIf="isLangMenuOpen">
         <li *ngFor="let lang of languages" (click)="changeLanguage(lang)" class="dropdown-item">
-          <img [src]="lang.flag" [alt]="lang.name" class="flag-icon">
+          <img [src]="lang.flag" [alt]="lang.name" class="flag-icon" alt="LanguageFlagOption">
           <span>{{ lang.name }}</span>
         </li>
       </ul>

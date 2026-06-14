@@ -30,7 +30,7 @@ export class HeaderComponent {
   constructor(private authService: AuthService, private translate: TranslateService, private router: Router, private activatedRoute: ActivatedRoute) {
     // Le decimos q empiece en oscuro
     document.body.classList.add('dark');
-    // Le decimos a Angular que empiece en inglés (lo que ya tenías)
+    // Le decimos a Angular q empiece en inglés
     this.translate.setDefaultLang('en');
     this.translate.use('en');
 
