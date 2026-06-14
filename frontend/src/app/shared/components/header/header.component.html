@@ -1,10 +1,12 @@
 <header class="header-container">
 
   <div class="header-left">
+    <!-- Botón de retroceso -->
     <button *ngIf="showBackButton" (click)="goBack()" class="back-button">
-      ❮
+      <
     </button>
 
+    <!-- Txt de bienvenida -->
     <span *ngIf="welcomeText" class="greeting">
       {{ 'HEADER.WELCOME' | translate }}, {{ userName }} 👋
     </span>

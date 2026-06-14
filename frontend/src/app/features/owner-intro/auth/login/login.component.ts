@@ -68,6 +68,12 @@ export class LoginComponent {
     // 🧹 MAGIA AQUÍ: Quitamos todos los espacios en blanco y guiones que haya puesto el usuario
     const cleanPhone = this.phone.replace(/[\s-]/g, '');
 
+    // Comprobamos si empieza por + y tiene al menos 8 dígitos (ej: +34123456)
+    if (!cleanPhone.startsWith('+') || cleanPhone.length < 9) {
+      this.errorMessage = 'El teléfono debe incluir un prefijo internacional válido (ej: +34).';
+      return;
+    }
+
     this.authService.sendSmsCode(this.phone, this.appVerifier)
       .then((result) => {
         this.confirmationResult = result;

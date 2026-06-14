@@ -68,6 +68,12 @@ export class RegisterComponent implements AfterViewInit {
     // Limpiamos el número de teléfono
     const cleanPhone = this.phone.replace(/[\s-]/g, '');
 
+    // Comprobamos si empieza por + y tiene al menos 8 dígitos (ej: +34123456)
+    if (!cleanPhone.startsWith('+') || cleanPhone.length < 9) {
+      this.errorMessage = 'El teléfono debe incluir un prefijo internacional válido (ej: +34).';
+      return;
+    }
+
     // 1. Creamos la cuenta en Firebase Auth (esto lo loguea automáticamente)
     this.authService.register(this.email, this.password)
       .then((userCredential) => {
