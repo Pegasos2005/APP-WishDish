@@ -14,7 +14,7 @@ import { filter } from 'rxjs';
 })
 export class HeaderComponent {
   showBackButton: boolean = true;
-  welcomeText: boolean = true;
+  showWelcomeText: boolean = true;
   userName: string = '';
   isDarkMode: boolean = true;
   isLangMenuOpen: boolean = false;
@@ -31,8 +31,8 @@ export class HeaderComponent {
     // Le decimos q empiece en oscuro
     document.body.classList.add('dark');
     // Le decimos a Angular q empiece en inglés
-    this.translate.setDefaultLang('en');
-    this.translate.use('en');
+    this.translate.setDefaultLang('en'); // X seguridad, si hay algúna palabra o idioma no declaradado, la busca en el diccionario inglés
+    this.translate.use('en'); // El idioma del usuario en la página
 
     // --- NUEVA LÓGICA DEL HEADER DINÁMICO ---
     // Escuchador de Rutas (Oculta botones en función de lo definido en app.routes.ts)
@@ -51,7 +51,7 @@ export class HeaderComponent {
 
       // Actualizamos las variables. Si la ruta no dice nada, por defecto serán true.
       this.showBackButton = data['showBackButton'] ?? true;
-      this.welcomeText = data['welcomeText'] ?? true;
+      this.showWelcomeText = data['showWelcomeText'] ?? true;
     });
 
     // 2. NUEVO: Escuchador de Usuario
@@ -85,7 +85,7 @@ export class HeaderComponent {
       alert("This language is not implemented yet");
       this.isLangMenuOpen = false;
       return;
-     }
+    }
     this.currentLang = lang;
     this.translate.use(lang.code); // Esta línea cambia toda la web de idioma
     this.isLangMenuOpen = false;   // Cerramos el menú

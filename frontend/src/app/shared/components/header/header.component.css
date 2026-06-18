@@ -96,6 +96,7 @@
 
 /* --- SELECTOR DE IDIOMA --- */
 .language-dropdown-container {
+  /* Este parámetro para que .dropdown-menu aparezca encima del padre, pues es absoluto (ver teoría de position relative y absolute) */
   position: relative;
 }
 
