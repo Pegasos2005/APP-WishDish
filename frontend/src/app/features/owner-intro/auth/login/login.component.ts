@@ -49,13 +49,34 @@ export class LoginComponent {
     this.codeSent = false;
   }
 
-  // --- FLUJO DE CORREO ---
+  // --- LOGIN CON EMAIL ---
   onEmailSubmit() {
     this.authService.login(this.email, this.password)
-      .then(() => {
-        this.router.navigate(['/owner-intro']); // O la ruta principal que decidas luego
+      .then(async (userCredential) => {
+
+        // --- CONTROL DE ADUANAS PARA CUENTAS FANTASMA ---
+        const uid = userCredential.user.uid;
+        const profile = await this.authService.getOwnerProfile(uid);
+
+        if (!profile) {
+          // ¡Cazado! Es un usuario que cerró la pestaña a mitad del registro.
+          // Borramos esta cuenta inútil al instante.
+          try {
+            await this.authService.deleteCurrentUser();
+          } catch(e) {}
+
+          this.authService.logout(); // Cerramos su sesión
+          this.errorMessage = 'Tu registro anterior no se completó. Por favor, vuelve a la pantalla de registro para crear tu cuenta correctamente.';
+          return; // Cortamos la ejecución, no le dejamos entrar
+        }
+        // ------------------------------------------------
+
+        // Si tiene perfil, es un usuario legítimo. Le dejamos pasar.
+        this.router.navigate(['/owner-intro']);
       })
-      .catch(err => this.errorMessage = 'Credenciales incorrectas');
+      .catch(err => {
+        this.errorMessage = 'Credenciales incorrectas';
+      });
   }
 
   // --- FLUJO DE TELÉFONO ---
@@ -81,7 +102,7 @@ export class LoginComponent {
         this.errorMessage = '';
       })
       .catch(err => {
-        this.errorMessage = 'Error al enviar SMS. Comprueba el prefijo internacional (+34).';
+        this.errorMessage = 'Error al enviar SMS. Compruebe que ha escrito correctamente su número de teléfono.';
         console.error(err);
       });
   }
@@ -94,7 +115,6 @@ export class LoginComponent {
 
     this.confirmationResult.confirm(this.smsCode)
       .then(() => {
-        console.log('¡Teléfono verificado!');
         this.router.navigate(['/owner-intro']);
       })
       .catch((err: any) => {

@@ -49,6 +49,13 @@ export class RegisterComponent implements AfterViewInit {
     this.appVerifier = this.authService.setupRecaptcha('recaptcha-register');
   }
 
+  initRecaptcha() {
+    if (this.appVerifier) {
+      this.appVerifier.clear(); // Limpia el widget anterior si lo hubiera
+    }
+    this.appVerifier = this.authService.setupRecaptcha('recaptcha-register');
+  }
+
   togglePassword() { this.showPassword = !this.showPassword; }
   toggleConfirmPassword() { this.showConfirmPassword = !this.showConfirmPassword; }
 
@@ -56,7 +63,7 @@ export class RegisterComponent implements AfterViewInit {
   // FASE 1: Crear Cuenta (Email) y Enviar SMS
   // ==========================================
   onStep1Submit() {
-    if (!this.firstName || !this.lastName || !this.restaurantName || !this.phone || !this.email || !this.password) {
+    if (!this.firstName || !this.lastName || !this.restaurantName || !this.city || !this.country || !this.phone || !this.email || !this.password) {
       this.errorMessage = 'Por favor, rellena todos los campos obligatorios.';
       return;
     }
@@ -74,27 +81,41 @@ export class RegisterComponent implements AfterViewInit {
       return;
     }
 
-    // 1. Creamos la cuenta en Firebase Auth (esto lo loguea automáticamente)
+    // ==========================================
+    // FASE 1: Crear Cuenta (Email) y Enviar SMS
+    // ==========================================
     this.authService.register(this.email, this.password)
       .then((userCredential) => {
         this.tempUid = userCredential.user.uid;
 
-        // 2. Vinculamos el teléfono y enviamos el SMS
+        // 2. Intentamos vincular el teléfono y enviar SMS
         return this.authService.linkPhoneToAccount(cleanPhone, this.appVerifier);
       })
       .then((result) => {
-        // ¡Éxito! El SMS va en camino. Pasamos a la Fase 2.
+        // ¡Éxito total! Todo correcto, pasamos a Fase 2
         this.confirmationResult = result;
         this.registrationStep = 2;
         this.errorMessage = '';
       })
-      .catch(err => {
+      .catch(async (err) => {
+        // Si el correo se creó bien, pero falló el teléfono borramos la cuenta fantasma al instante!
+        if (this.tempUid) {
+          try {
+            await this.authService.deleteCurrentUser();
+          } catch (e) { console.error('Error en el Rollback:', e); }
+          this.tempUid = ''; // Limpiamos rastro
+        }
+
+        // Reiniciamos el reCAPTCHA para que pueda volver a darle al botón sin recargar
+        this.initRecaptcha();
+
+        // Mostramos el error exacto al usuario
         if (err.code === 'auth/email-already-in-use') {
           this.errorMessage = 'Este correo ya está registrado.';
         } else if (err.code === 'auth/credential-already-in-use') {
-          this.errorMessage = 'Este número de teléfono ya está vinculado a otra cuenta.';
+          this.errorMessage = 'Este número de teléfono ya pertenece a otra cuenta.';
         } else {
-          this.errorMessage = 'Error: ' + err.message;
+          this.errorMessage = 'Error al enviar el SMS. Revisa tu número.';
         }
         console.error(err);
       });
@@ -135,6 +156,23 @@ export class RegisterComponent implements AfterViewInit {
       .catch((err: any) => {
         this.errorMessage = 'Código incorrecto. Inténtalo de nuevo.';
       });
+  }
+
+  // --- SOLUCIÓN TRAMPA DEL BOTÓN "ATRÁS" ---
+  async goBackToStep1() {
+    // Si el usuario se arrepiente y vuelve atrás, borramos su cuenta a medias
+    // para que pueda cambiar su correo sin que Firebase le diga que "ya existe"
+    if (this.tempUid) {
+      try {
+        await this.authService.deleteCurrentUser();
+      } catch (e) { console.error('Error en el Rollback:', e); }
+      this.tempUid = '';
+    }
+
+    this.initRecaptcha(); // Reiniciamos sistema anti-spam
+    this.registrationStep = 1;
+    this.errorMessage = '';
+    this.smsCode = ''; // Limpiamos el PIN viejo
   }
 
   goToLogin() {

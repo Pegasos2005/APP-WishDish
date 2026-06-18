@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
 // v--- ({RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber} Estos son para el servicio móvil) ---v
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, user, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber } from '@angular/fire/auth';
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  user,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+  linkWithPhoneNumber,
+  deleteUser
+} from '@angular/fire/auth';
 import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -74,6 +84,14 @@ export class AuthService {
       return docSnap.data(); // Devuelve todo el JSON con el nombre, ciudad, etc.
     } else {
       return null;
+    }
+  }
+
+  // Borra la cuenta del usuario que está actualmente logueado
+  async deleteCurrentUser() {
+    const currentUser = this.auth.currentUser;
+    if (currentUser) {
+      await deleteUser(currentUser);
     }
   }
 }
