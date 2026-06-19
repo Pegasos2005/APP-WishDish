@@ -1,0 +1,175 @@
+/* --- CONTENEDOR PRINCIPAL --- */
+.dashboard-container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.dashboard-title {
+  color: var(--text-main);
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.dashboard-subtitle {
+  color: var(--text-muted);
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+/* --- GRID DE BOTONES --- */
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .action-grid {
+    grid-template-columns: 1fr; /* 1 columna en móviles */
+  }
+}
+
+/* --- TARJETAS/BOTONES --- */
+.action-card {
+  background-color: var(--bg-surface);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 30px 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  border-color: var(--accent-color);
+}
+
+.action-card .icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.action-card h3 {
+  color: var(--text-main);
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.action-card p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Estilos especiales para destacar opciones */
+.action-card.primary {
+  border-color: var(--accent-color);
+  background-color: rgba(var(--accent-color-rgb), 0.05); /* Si tienes el rgb configurado, si no quita el background */
+}
+
+/* =========================================
+   VENTANAS MODALES (OVERLAYS)
+   ========================================= */
+
+/* Fondo oscuro que tapa todo */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegura que esté por encima del Header */
+}
+
+/* La caja blanca del centro */
+.modal-content {
+  background-color: var(--bg-surface);
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  color: var(--text-main);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Input para la IP */
+.ip-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 2px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  margin-bottom: 25px;
+}
+
+.ip-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+/* Botones del Modal */
+.modal-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-cancel, .btn-connect {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s;
+}
+
+.btn-cancel {
+  background-color: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
+.btn-cancel:hover {
+  background-color: var(--bg-main);
+}
+
+.btn-connect {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.btn-connect:hover {
+  opacity: 0.9;
+}
+
+/* Caja de información del servicio técnico */
+.service-info-box {
+  background-color: var(--bg-main);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.service-info-box p {
+  margin: 10px 0;
+  color: var(--text-main);
+}

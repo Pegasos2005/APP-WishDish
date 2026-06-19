@@ -1,1 +1,73 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+
+  <h1 class="dashboard-title">Device Setup</h1>
+  <p class="dashboard-subtitle">Please select how you want to configure this device.</p>
+
+  <div class="action-grid">
+
+    <button class="action-card primary" (click)="createNewLocal()">
+      <div class="icon">🏪</div>
+      <h3>New Local</h3>
+      <p>Set up this device as the main server</p>
+    </button>
+
+    <button class="action-card" (click)="autoLinkDevice()">
+      <div class="icon">📡</div>
+      <h3>Auto-Link Device</h3>
+      <p>Scan network for existing server</p>
+    </button>
+
+    <button class="action-card" (click)="openManualLink()">
+      <div class="icon">🔌</div>
+      <h3>Manual IP Link</h3>
+      <p>Connect using server IP address</p>
+    </button>
+
+    <button class="action-card highlight" (click)="openServiceSetup()">
+      <div class="icon">🛠️</div>
+      <h3>Pro Setup Service</h3>
+      <p>Get professional installation</p>
+    </button>
+
+  </div>
+
+</div>
+
+<div class="modal-overlay" *ngIf="showManualLinkModal" (click)="closeManualLink()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <h2>Manual IP Link</h2>
+    <p style="color: var(--text-muted); margin-bottom: 20px;">
+      Enter the IPv4 address of the main desktop device (e.g., 192.168.1.50).
+    </p>
+
+    <input type="text" [(ngModel)]="targetIp" class="ip-input" placeholder="192.168.1.X">
+
+    <div class="modal-actions">
+      <button class="btn-cancel" (click)="closeManualLink()">Cancel</button>
+      <button class="btn-connect" (click)="connectToIp()">Connect</button>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-overlay" *ngIf="showServiceModal" (click)="closeServiceSetup()">
+  <div class="modal-content text-center" (click)="$event.stopPropagation()">
+
+    <div style="font-size: 50px; margin-bottom: 10px;">👨‍🔧</div>
+    <h2>Professional Setup Service</h2>
+    <p style="color: var(--text-muted); margin-bottom: 20px;">
+      Let our experts set up your restaurant's network, hardware, and menu perfectly.
+    </p>
+
+    <div class="service-info-box">
+      <p><strong>📞 Phone:</strong> +34 900 123 456</p>
+      <p><strong>✉️ Email:</strong> support@wishdish.com</p>
+      <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+      <p style="font-size: 18px;"><strong>Estimated Price:</strong> ~299€ <span style="font-size: 12px; color: var(--text-muted);">(Hardware not included)</span></p>
+    </div>
+
+    <button class="btn-connect" style="width: 100%; margin-top: 20px;" (click)="closeServiceSetup()">Close</button>
+
+  </div>
+</div>
