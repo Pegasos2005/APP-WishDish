@@ -72,7 +72,7 @@ export class LoginComponent {
         // ------------------------------------------------
 
         // Si tiene perfil, es un usuario legítimo. Le dejamos pasar.
-        this.router.navigate(['/owner-intro']);
+        this.router.navigate(['/owner-intro/dashboard']);
       })
       .catch(err => {
         this.errorMessage = 'Credenciales incorrectas';
@@ -115,7 +115,7 @@ export class LoginComponent {
 
     this.confirmationResult.confirm(this.smsCode)
       .then(() => {
-        this.router.navigate(['/owner-intro']);
+        this.router.navigate(['/owner-intro/dashboard']);
       })
       .catch((err: any) => {
         this.errorMessage = 'Código incorrecto o caducado.';

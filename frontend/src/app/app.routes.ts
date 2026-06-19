@@ -25,6 +25,11 @@ export const routes: Routes = [
         path: 'register',
         loadComponent: () => import('./features/owner-intro/auth/register/register.component').then(m => m.RegisterComponent),
         data: { showBackButton: false, showWelcomeText: false }
+      },
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./features/owner-intro/dashboard/dashboard.component').then(m => m.DashboardComponent),
+        data: { showBackButton: false, showWelcomeText: true }
       }
       // Aquí añadiremos más adelante:
       // { path: 'options', loadComponent: () => ... }

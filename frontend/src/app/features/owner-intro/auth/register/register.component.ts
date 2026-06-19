@@ -148,7 +148,7 @@ export class RegisterComponent implements AfterViewInit {
       })
       .then(() => {
         console.log('¡Cuenta creada, teléfono vinculado y datos en Firestore!');
-        this.router.navigate(['/owner-intro']);
+        this.router.navigate(['/owner-intro/dashboard']);
       })
       .catch((err: any) => {
         this.errorMessage = 'Código incorrecto. Inténtalo de nuevo.';
