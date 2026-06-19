@@ -6,7 +6,7 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet], // <- Súper importante importar RouterOutlet
   templateUrl: './app.html',
-  styleUrls: ['./app.css']
+  styleUrls: ['./app.scss']
 })
 export class App {
   // Este componente se queda limpio. Es el "marco" de tu aplicación.
