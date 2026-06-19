@@ -37,7 +37,7 @@
   <div class="modal-content" (click)="$event.stopPropagation()">
 
     <h2>Manual IP Link</h2>
-    <p style="color: var(--text-muted); margin-bottom: 20px;">
+    <p class="modal-description">
       Enter the IPv4 address of the main desktop device (e.g., 192.168.1.50).
     </p>
 
@@ -54,20 +54,26 @@
 <div class="modal-overlay" *ngIf="showServiceModal" (click)="closeServiceSetup()">
   <div class="modal-content text-center" (click)="$event.stopPropagation()">
 
-    <div style="font-size: 50px; margin-bottom: 10px;">👨‍🔧</div>
+    <div class="service-icon">👨‍🔧</div>
+
     <h2>Professional Setup Service</h2>
-    <p style="color: var(--text-muted); margin-bottom: 20px;">
+    <p class="modal-description">
       Let our experts set up your restaurant's network, hardware, and menu perfectly.
     </p>
 
     <div class="service-info-box">
       <p><strong>📞 Phone:</strong> +34 900 123 456</p>
       <p><strong>✉️ Email:</strong> support@wishdish.com</p>
-      <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
-      <p style="font-size: 18px;"><strong>Estimated Price:</strong> ~299€ <span style="font-size: 12px; color: var(--text-muted);">(Hardware not included)</span></p>
+
+      <hr class="service-divider">
+
+      <p class="service-price">
+        <strong>Estimated Price:</strong> ~299€
+        <span class="service-note">(Hardware not included)</span>
+      </p>
     </div>
 
-    <button class="btn-connect" style="width: 100%; margin-top: 20px;" (click)="closeServiceSetup()">Close</button>
+    <button class="btn-connect full-width" (click)="closeServiceSetup()">Close</button>
 
   </div>
 </div>

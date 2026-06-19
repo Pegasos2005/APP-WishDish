@@ -1,37 +1,40 @@
-/* --- CONTENEDOR PRINCIPAL --- */
+/* =========================================
+   CONTENEDOR PRINCIPAL Y CABECERA
+   ========================================= */
 .dashboard-container {
   max-width: 800px;
   margin: 60px auto;
   padding: 20px;
   text-align: center;
+
+  /* Anidación: Estos elementos solo se verán afectados si están dentro de dashboard-container */
+  .dashboard-title {
+    color: var(--text-main);
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .dashboard-subtitle {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
 }
 
-.dashboard-title {
-  color: var(--text-main);
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.dashboard-subtitle {
-  color: var(--text-muted);
-  font-size: 16px;
-  margin-bottom: 40px;
-}
-
-/* --- GRID DE BOTONES --- */
+/* =========================================
+   GRID DE BOTONES Y TARJETAS
+   ========================================= */
 .action-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-}
 
-@media (max-width: 600px) {
-  .action-grid {
-    grid-template-columns: 1fr; /* 1 columna en móviles */
+  /* Anidación de Media Queries (¡Magia de SCSS!) */
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
   }
 }
 
-/* --- TARJETAS/BOTONES --- */
 .action-card {
   background-color: var(--bg-surface);
   border: 2px solid transparent;
@@ -41,42 +44,42 @@
   transition: transform 0.2s ease, border-color 0.3s, box-shadow 0.3s;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   text-align: center;
-}
 
-.action-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  border-color: var(--accent-color);
-}
+  /* El '&' significa "este mismo elemento". Así hacemos el :hover */
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-color: var(--accent-color);
+  }
 
-.action-card .icon {
-  font-size: 40px;
-  margin-bottom: 15px;
-}
+  /* El '&' se une a la clase primary: ".action-card.primary" */
+  &.primary {
+    border-color: var(--accent-color);
+    background-color: rgba(var(--accent-color-rgb), 0.05);
+  }
 
-.action-card h3 {
-  color: var(--text-main);
-  margin-bottom: 10px;
-  font-size: 20px;
-}
+  /* Anidación de los elementos internos de la tarjeta */
+  .icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+  }
 
-.action-card p {
-  color: var(--text-muted);
-  font-size: 14px;
-  margin: 0;
-}
+  h3 {
+    color: var(--text-main);
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
 
-/* Estilos especiales para destacar opciones */
-.action-card.primary {
-  border-color: var(--accent-color);
-  background-color: rgba(var(--accent-color-rgb), 0.05); /* Si tienes el rgb configurado, si no quita el background */
+  p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin: 0;
+  }
 }
 
 /* =========================================
    VENTANAS MODALES (OVERLAYS)
    ========================================= */
-
-/* Fondo oscuro que tapa todo */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -88,88 +91,125 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Asegura que esté por encima del Header */
-}
+  z-index: 1000;
 
-/* La caja blanca del centro */
-.modal-content {
-  background-color: var(--bg-surface);
-  padding: 30px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 450px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  color: var(--text-main);
-}
+  /* Anidamos todo el contenido del modal aquí dentro */
+  .modal-content {
+    background-color: var(--bg-surface);
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    color: var(--text-main);
 
-.text-center {
-  text-align: center;
-}
+    &.text-center {
+      text-align: center;
+    }
 
-/* Input para la IP */
-.ip-input {
-  width: 100%;
-  padding: 15px;
-  font-size: 20px;
-  text-align: center;
-  letter-spacing: 2px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  margin-bottom: 25px;
-}
+    h2 {
+      margin-bottom: 10px;
+    }
 
-.ip-input:focus {
-  outline: none;
-  border-color: var(--accent-color);
-}
+    /* ESTILOS EXTRAÍDOS DEL HTML */
+    .modal-description {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
 
-/* Botones del Modal */
-.modal-actions {
-  display: flex;
-  gap: 15px;
-}
+    .service-icon {
+      font-size: 50px;
+      margin-bottom: 10px;
+    }
 
-.btn-cancel, .btn-connect {
-  flex: 1;
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  transition: opacity 0.2s;
-}
+    /* Input IP */
+    .ip-input {
+      width: 100%;
+      padding: 15px;
+      font-size: 20px;
+      text-align: center;
+      letter-spacing: 2px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      margin-bottom: 25px;
 
-.btn-cancel {
-  background-color: transparent;
-  color: var(--text-muted);
-  border: 1px solid var(--border-color);
-}
+      &:focus {
+        outline: none;
+        border-color: var(--accent-color);
+      }
+    }
 
-.btn-cancel:hover {
-  background-color: var(--bg-main);
-}
+    /* Acciones / Botones dentro del modal */
+    .modal-actions {
+      display: flex;
+      gap: 15px;
+    }
 
-.btn-connect {
-  background-color: var(--accent-color);
-  color: white;
-}
+    .btn-cancel, .btn-connect {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.2s, opacity 0.2s;
+    }
 
-.btn-connect:hover {
-  opacity: 0.9;
-}
+    .btn-cancel {
+      background-color: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
 
-/* Caja de información del servicio técnico */
-.service-info-box {
-  background-color: var(--bg-main);
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  text-align: left;
-}
+      &:hover {
+        background-color: var(--bg-main);
+      }
+    }
 
-.service-info-box p {
-  margin: 10px 0;
-  color: var(--text-main);
+    .btn-connect {
+      background-color: var(--accent-color);
+      color: white;
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      /* ESTILO EXTRAÍDO: Para el botón solitario del modal de servicio */
+      &.full-width {
+        width: 100%;
+        margin-top: 20px;
+      }
+    }
+
+    /* Caja del Servicio Técnico */
+    .service-info-box {
+      background-color: var(--bg-main);
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+
+      p {
+        margin: 10px 0;
+        color: var(--text-main);
+      }
+
+      /* ESTILOS EXTRAÍDOS DEL HTML */
+      .service-divider {
+        border: 0;
+        border-top: 1px solid var(--border-color);
+        margin: 15px 0;
+      }
+
+      .service-price {
+        font-size: 18px;
+
+        .service-note {
+          font-size: 12px;
+          color: var(--text-muted);
+        }
+      }
+    }
+  }
 }
