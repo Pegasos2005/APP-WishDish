@@ -10,7 +10,7 @@ import { filter } from 'rxjs';
   standalone: true,
   imports: [CommonModule, TranslateModule], // <- Importamos TranslateModule aquí
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
   showBackButton: boolean = true;
