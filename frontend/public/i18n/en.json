@@ -18,17 +18,16 @@
     "REGISTER": "First access? Register"
   },
   "REGISTER": {
-    "TITLE": "Register your Restaurant",
+    "TITLE": "Register",
     "FIRST_NAME": "First Name",
     "FIRST_NAME_PLACEHOLDER": "John",
     "LAST_NAME": "Last Name",
     "LAST_NAME_PLACEHOLDER": "Doe",
     "PHONE": "Phone Number",
     "PHONE_PLACEHOLDER": "+44 770 000000",
-    "RESTAURANT_NAME": "Restaurant Name",
-    "CITY": "City",
+    "CITY": "Your city",
     "CITY_PLACEHOLDER": "London",
-    "COUNTRY": "Country",
+    "COUNTRY": "Your country",
     "COUNTRY_PLACEHOLDER": "United Kingdom",
     "EMAIL": "Email",
     "EMAIL_PLACEHOLDER": "admin@restaurant.com",
@@ -36,7 +35,12 @@
     "PASSWORD_PLACEHOLDER": "Minimum 6 characters",
     "CONFIRM_PASSWORD": "Confirm Password",
     "CONFIRM_PLACEHOLDER": "Repeat your password",
+    "VERIFY_PHONE": "Create your acount and verify your phone",
+    "VERIFY_YOUR_PHONE": "Verify your phone",
+    "VERIFY_PHONE_TEXT1": "We sent a SMS code to ",
+    "VERIFY_PHONE_TEXT2": "Write it down for check your acount",
     "SUBMIT": "Create Account",
+    "WRONG_NUMBER": "I wrote a wrong number",
     "GO_LOGIN": "Already have an account? Login"
   }
 }

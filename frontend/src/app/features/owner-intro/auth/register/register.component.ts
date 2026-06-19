@@ -20,7 +20,6 @@ export class RegisterComponent implements AfterViewInit {
   firstName: string = '';
   lastName: string = '';
   phone: string = '';
-  restaurantName: string = '';
   city: string = '';
   country: string = '';
 
@@ -44,9 +43,8 @@ export class RegisterComponent implements AfterViewInit {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngAfterViewInit() {
-    // Preparamos el escudo invisible de Google para evitar spam de SMS
-    this.appVerifier = this.authService.setupRecaptcha('recaptcha-register');
+  ngAfterViewInit() { // Esta función es necesaria, pues para implementar AfterViewInit hace falta, aunque no se use explícitamente
+    this.initRecaptcha();
   }
 
   initRecaptcha() {
@@ -63,7 +61,7 @@ export class RegisterComponent implements AfterViewInit {
   // FASE 1: Crear Cuenta (Email) y Enviar SMS
   // ==========================================
   onStep1Submit() {
-    if (!this.firstName || !this.lastName || !this.restaurantName || !this.city || !this.country || !this.phone || !this.email || !this.password) {
+    if (!this.firstName || !this.lastName || !this.city || !this.country || !this.phone || !this.email || !this.password) {
       this.errorMessage = 'Por favor, rellena todos los campos obligatorios.';
       return;
     }
@@ -139,7 +137,6 @@ export class RegisterComponent implements AfterViewInit {
           firstName: this.firstName,
           lastName: this.lastName,
           phone: cleanPhone, // Guardamos el limpio por seguridad
-          restaurantName: this.restaurantName,
           city: this.city,
           country: this.country,
           email: this.email,
@@ -175,7 +172,13 @@ export class RegisterComponent implements AfterViewInit {
     this.smsCode = ''; // Limpiamos el PIN viejo
   }
 
-  goToLogin() {
+  async goToLogin() {
+    if (this.tempUid) {
+      try {
+        await this.authService.deleteCurrentUser();
+      } catch (e) {}
+      this.tempUid = '';
+    }
     this.router.navigate(['/owner-intro/login']);
   }
 }

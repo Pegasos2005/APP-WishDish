@@ -29,28 +29,22 @@
       <input type="tel" [(ngModel)]="phone" class="input-field" [placeholder]="'REGISTER.PHONE_PLACEHOLDER' | translate">
     </div>
 
-    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
-
-    <div class="input-group">
-      <label>{{ 'REGISTER.RESTAURANT_NAME' | translate }}</label>
-      <input type="text" [(ngModel)]="restaurantName" class="input-field" placeholder="Burger King">
-    </div>
+    <hr class="section-divider">
 
     <div class="form-row">
-      <div class="input-group">
-        <label>{{ 'REGISTER.CITY' | translate }}</label>
-        <input type="text" [(ngModel)]="city" class="input-field" [placeholder]="'REGISTER.CITY_PLACEHOLDER' | translate">
-      </div>
-
       <div class="input-group">
         <label>{{ 'REGISTER.COUNTRY' | translate }}</label>
         <input type="text" [(ngModel)]="country" class="input-field" [placeholder]="'REGISTER.COUNTRY_PLACEHOLDER' | translate">
       </div>
+
+      <div class="input-group">
+        <label>{{ 'REGISTER.CITY' | translate }}</label>
+        <input type="text" [(ngModel)]="city" class="input-field" [placeholder]="'REGISTER.CITY_PLACEHOLDER' | translate">
+      </div>
     </div>
 
-    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+    <hr class="section-divider">
 
-      <!-- Email -->
     <div class="input-group">
       <label>{{ 'REGISTER.EMAIL' | translate }}</label>
       <input
@@ -60,7 +54,7 @@
         [placeholder]="'REGISTER.EMAIL_PLACEHOLDER' | translate">
     </div>
 
-    <div class="form-row" style="margin-bottom: 25px;">
+    <div class="form-row mb-large">
       <div class="input-group">
         <label>{{ 'REGISTER.PASSWORD' | translate }}</label>
         <div class="password-wrapper">
@@ -91,29 +85,32 @@
     </div>
 
     <button (click)="onStep1Submit()" class="submit-btn">
-      Crear Cuenta y Verificar Móvil
+      {{ 'REGISTER.VERIFY_PHONE' | translate }}
     </button>
   </div>
 
-  <div *ngIf="registrationStep === 2" style="text-align: center; padding: 20px 0;">
-    <div style="font-size: 40px; margin-bottom: 15px;">📱</div>
-    <h3 style="color: var(--text-main); margin-bottom: 10px;">Verifica tu teléfono</h3>
-    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">
-      Hemos enviado un código SMS al <strong>{{ phone }}</strong>.<br>
-      Escríbelo abajo para asegurar tu cuenta.
+  <div *ngIf="registrationStep === 2" class="verification-container">
+    <div class="verification-icon">📱</div>
+    <h3 class="verification-title">{{ 'REGISTER.VERIFY_YOUR_PHONE' | translate }}</h3>
+    <p class="verification-text">
+      {{ 'REGISTER.VERIFY_PHONE_TEXT1' | translate }} <strong>{{ phone }}</strong>.<br>
+      {{ 'REGISTER.VERIFY_PHONE_TEXT2' | translate }}
     </p>
 
-    <div class="input-group" style="margin-bottom: 25px;">
-      <input type="text" [(ngModel)]="smsCode" class="input-field code-input" placeholder="123456" maxlength="6" style="text-align: center; font-size: 24px; letter-spacing: 8px; font-weight: bold;">
+    <div class="input-group mb-large">
+      <input type="text" [(ngModel)]="smsCode" class="input-field code-input" placeholder="123456" maxlength="6">
     </div>
 
     <button (click)="onVerifySms()" class="submit-btn">
       {{ 'REGISTER.SUBMIT' | translate }}
     </button>
 
+    <button (click)="goBackToStep1()" class="secondary-action-btn">
+      {{ 'REGISTER.WRONG_NUMBER' | translate }}
+    </button>
   </div>
 
-  <p class="register-link" (click)="goToLogin()">
+  <p *ngIf="registrationStep === 1" class="register-link" (click)="goToLogin()">
     {{ 'REGISTER.GO_LOGIN' | translate }}
   </p>
 

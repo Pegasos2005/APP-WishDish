@@ -18,17 +18,16 @@
     "REGISTER": "¿Primer acceso? Regístrate"
   },
   "REGISTER": {
-    "TITLE": "Registra tu Restaurante",
+    "TITLE": "Registrate",
     "FIRST_NAME": "Nombre",
     "FIRST_NAME_PLACEHOLDER": "Pedro",
     "LAST_NAME": "Apellidos",
     "LAST_NAME_PLACEHOLDER": "Sanchez",
     "PHONE": "Teléfono",
     "PHONE_PLACEHOLDER": "+34 600 000 000",
-    "RESTAURANT_NAME": "Nombre del local",
-    "CITY": "Ciudad",
+    "CITY": "Tu ciudad",
     "CITY_PLACEHOLDER": "Madrid",
-    "COUNTRY": "País",
+    "COUNTRY": "Tu país",
     "COUNTRY_PLACEHOLDER": "España",
     "EMAIL": "Correo electrónico",
     "EMAIL_PLACEHOLDER": "admin@restaurante.com",
@@ -36,7 +35,12 @@
     "PASSWORD_PLACEHOLDER": "Mínimo 6 caracteres",
     "CONFIRM_PASSWORD": "Confirmar contraseña",
     "CONFIRM_PLACEHOLDER": "Repite tu contraseña",
+    "VERIFY_PHONE": "Crear cuenta y verificar móvil",
+    "VERIFY_YOUR_PHONE": "Verifica tu teléfono",
+    "VERIFY_PHONE_TEXT1": "Hemos enviado un código SMS al ",
+    "VERIFY_PHONE_TEXT2": "Escríbelo abajo para asegurar tu cuenta",
     "SUBMIT": "Crear Cuenta",
+    "WRONG_NUMBER": "He escrito mal mi número",
     "GO_LOGIN": "¿Ya tienes cuenta? Inicia sesión"
   }
 }

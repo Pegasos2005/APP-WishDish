@@ -1,4 +1,6 @@
-/* Contenedor de la tarjeta */
+/* =========================================
+   ESTILOS GENERALES DE LA TARJETA
+   ========================================= */
 .login-wrapper {
   max-width: 550px;
   margin: 40px auto;
@@ -26,14 +28,15 @@
   font-size: 14px;
 }
 
-/* Suavizamos el error en modo oscuro para que no deslumbre */
 :host-context(body.dark) .error-message {
   background-color: rgba(220, 38, 38, 0.2);
   color: #fca5a5;
   border: 1px solid rgba(220, 38, 38, 0.3);
 }
 
-/* Campos de formulario */
+/* =========================================
+   CAMPOS DE FORMULARIO
+   ========================================= */
 .input-group {
   margin-bottom: 15px;
 }
@@ -63,19 +66,19 @@
   border-color: var(--accent-color);
 }
 
-/* --- Contenedor de la contraseña --- */
+/* =========================================
+   OJITO DE LA CONTRASEÑA
+   ========================================= */
 .password-wrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-/* Le damos espacio a la derecha al input para que el texto no pise el ojo */
 .password-wrapper .input-field {
   padding-right: 40px;
 }
 
-/* El botón del ojo */
 .eye-btn {
   position: absolute;
   right: 10px;
@@ -100,15 +103,13 @@
   transition: filter 0.3s ease;
 }
 
-/* Magia del Dark Mode:
-  Como la imagen es negra por defecto, cuando la app entre en modo oscuro
-  invertimos sus colores al 100% para que se vuelva totalmente blanca.
-*/
 :host-context(body.dark) .eye-icon {
   filter: invert(1) brightness(2);
 }
 
-/* Botón Principal */
+/* =========================================
+   BOTONES Y ENLACES PRINCIPALES
+   ========================================= */
 .submit-btn {
   width: 100%;
   padding: 14px;
@@ -127,7 +128,6 @@
   background-color: var(--accent-hover);
 }
 
-/* Enlace a Registro */
 .register-link {
   text-align: center;
   margin-top: 20px;
@@ -143,22 +143,90 @@
   text-decoration: underline;
 }
 
-/* MAGIA DEL GRID: Dos columnas para los inputs */
+/* =========================================
+   SISTEMA DE COLUMNAS (GRID)
+   ========================================= */
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Dos columnas del mismo tamaño */
-  gap: 15px; /* Espacio entre las columnas */
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
   margin-bottom: 15px;
 }
 
-/* Evitamos márgenes dobles cuando .input-group está dentro de .form-row */
 .form-row .input-group {
   margin-bottom: 0;
 }
 
-/* Diseño Responsivo: Si la pantalla es muy pequeña (móvil), volvemos a 1 columna */
 @media (max-width: 480px) {
   .form-row {
     grid-template-columns: 1fr;
   }
+}
+
+/* =========================================
+   ESTILOS EXTRAÍDOS DEL HTML (NUEVOS)
+   ========================================= */
+
+/* Separador visual para dividir secciones (Datos Personales vs Local vs Acceso) */
+.section-divider {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 20px 0;
+}
+
+/* Clase de utilidad para dar más aire antes de los botones finales */
+.mb-large {
+  margin-bottom: 25px !important;
+}
+
+/* --- BLOQUE DE LA FASE 2 (Verificación de SMS) --- */
+
+/* Contenedor principal de la Fase 2 */
+.verification-container {
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* El emoji del móvil grande */
+.verification-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+/* Título de "Verifica tu teléfono" */
+.verification-title {
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+/* Párrafo explicativo del SMS */
+.verification-text {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+/* Input especial para el código SMS (números grandes y separados) */
+.code-input {
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 8px;
+  font-weight: bold;
+}
+
+/* Botón secundario para volver atrás ("Me he equivocado de número") */
+.secondary-action-btn {
+  width: 100%;
+  margin-top: 15px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+/* Efecto hover para el botón de volver atrás */
+.secondary-action-btn:hover {
+  color: var(--text-main);
 }
