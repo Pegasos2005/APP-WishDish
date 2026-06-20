@@ -42,5 +42,28 @@
     "SUBMIT": "Create Account",
     "WRONG_NUMBER": "I wrote a wrong number",
     "GO_LOGIN": "Already have an account? Login"
+  },
+  "DASHBOARD": {
+    "TITLE": "Device Setup",
+    "SUBTITLE": "Please select how you want to configure this device.",
+    "CARD_NEW_ESTABLISHMENT_TITLE": "New Establishment",
+    "CARD_NEW_ESTABLISHMENT_DESC": "Set up this device as the main server",
+    "CARD_AUTO_LINK_TITLE": "Auto-Link Device",
+    "CARD_AUTO_LINK_DESC": "Scan network for existing server",
+    "CARD_MANUAL_LINK_TITLE": "Manual IP Link",
+    "CARD_MANUAL_LINK_DESC": "Connect using server IP address",
+    "CARD_PRO_SETUP_TITLE": "Pro Setup Service",
+    "CARD_PRO_SETUP_DESC": "Get professional installation",
+    "MODAL_MANUAL_LINK_TITLE": "Manual IP Link",
+    "MODAL_MANUAL_LINK_DESC": "Enter the IPv4 address of the main desktop device (e.g., 192.168.1.50).",
+    "MODAL_BTN_CANCEL": "Cancel",
+    "MODAL_BTN_CONNECT": "Connect",
+    "MODAL_PRO_SETUP_TITLE": "Professional Setup Service",
+    "MODAL_PRO_SETUP_DESC": "Let our experts set up your restaurant's network, hardware, and menu perfectly.",
+    "PHONE": "Phone:",
+    "EMAIL": "Email:",
+    "ESTIMATED_PRICE": "Estimated Price:",
+    "HARDWARE_NOT_INCLUDED": "(Hardware not included)",
+    "MODAL_BTN_CLOSE": "Close"
   }
 }

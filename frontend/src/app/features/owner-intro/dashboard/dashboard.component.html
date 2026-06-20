@@ -1,32 +1,32 @@
 <div class="dashboard-container">
 
-  <h1 class="dashboard-title">Device Setup</h1>
-  <p class="dashboard-subtitle">Please select how you want to configure this device.</p>
+  <h1 class="dashboard-title">{{ 'DASHBOARD.TITLE' | translate }}</h1>
+  <p class="dashboard-subtitle">{{ 'DASHBOARD.SUBTITLE' | translate }}</p>
 
   <div class="action-grid">
 
     <button class="action-card primary" (click)="createNewLocal()">
       <div class="icon">🏪</div>
-      <h3>New Establishment</h3>
-      <p>Set up this device as the main server</p>
+      <h3>{{ 'DASHBOARD.CARD_NEW_ESTABLISHMENT_TITLE' | translate }}</h3>
+      <p>{{ 'DASHBOARD.CARD_NEW_ESTABLISHMENT_DESC' | translate }}</p>
     </button>
 
     <button class="action-card" (click)="autoLinkDevice()">
       <div class="icon">📡</div>
-      <h3>Auto-Link Device</h3>
-      <p>Scan network for existing server</p>
+      <h3>{{ 'DASHBOARD.CARD_AUTO_LINK_TITLE' | translate }}</h3>
+      <p>{{ 'DASHBOARD.CARD_AUTO_LINK_DESC' | translate }}</p>
     </button>
 
     <button class="action-card" (click)="openManualLink()">
       <div class="icon">🔌</div>
-      <h3>Manual IP Link</h3>
-      <p>Connect using server IP address</p>
+      <h3>{{ 'DASHBOARD.CARD_MANUAL_LINK_TITLE' | translate }}</h3>
+      <p>{{ 'DASHBOARD.CARD_MANUAL_LINK_DESC' | translate }}</p>
     </button>
 
     <button class="action-card highlight" (click)="openServiceSetup()">
       <div class="icon">🛠️</div>
-      <h3>Pro Setup Service</h3>
-      <p>Get professional installation</p>
+      <h3>{{ 'DASHBOARD.CARD_PRO_SETUP_TITLE' | translate }}</h3>
+      <p>{{ 'DASHBOARD.CARD_PRO_SETUP_DESC' | translate }}</p>
     </button>
 
   </div>
@@ -36,16 +36,16 @@
 <div class="modal-overlay" *ngIf="showManualLinkModal" (click)="closeManualLink()">
   <div class="modal-content" (click)="$event.stopPropagation()">
 
-    <h2>Manual IP Link</h2>
+    <h2>{{ 'DASHBOARD.MODAL_MANUAL_LINK_TITLE' | translate }}</h2>
     <p class="modal-description">
-      Enter the IPv4 address of the main desktop device (e.g., 192.168.1.50).
+      {{ 'DASHBOARD.MODAL_MANUAL_LINK_DESC' | translate }}
     </p>
 
     <input type="text" [(ngModel)]="targetIp" class="ip-input" placeholder="192.168.1.X">
 
     <div class="modal-actions">
-      <button class="btn-cancel" (click)="closeManualLink()">Cancel</button>
-      <button class="btn-connect" (click)="connectToIp()">Connect</button>
+      <button class="btn-cancel" (click)="closeManualLink()">{{ 'DASHBOARD.MODAL_BTN_CANCEL' | translate }}</button>
+      <button class="btn-connect" (click)="connectToIp()">{{ 'DASHBOARD.MODAL_BTN_CONNECT' | translate }}</button>
     </div>
 
   </div>
@@ -56,24 +56,24 @@
 
     <div class="service-icon">👨‍🔧</div>
 
-    <h2>Professional Setup Service</h2>
+    <h2>{{ 'DASHBOARD.MODAL_PRO_SETUP_TITLE' | translate }}</h2>
     <p class="modal-description">
-      Let our experts set up your restaurant's network, hardware, and menu perfectly.
+      {{ 'DASHBOARD.MODAL_PRO_SETUP_DESC' | translate }}
     </p>
 
     <div class="service-info-box">
-      <p><strong>📞 Phone:</strong> +34 900 123 456</p>
-      <p><strong>✉️ Email:</strong> support@wishdish.com</p>
+      <p><strong>📞 {{ 'DASHBOARD.PHONE' | translate }}</strong> +34 900 123 456</p>
+      <p><strong>✉️ {{ 'DASHBOARD.EMAIL' | translate }}</strong> support@wishdish.com</p>
 
       <hr class="service-divider">
 
       <p class="service-price">
-        <strong>Estimated Price:</strong> ~299€
-        <span class="service-note">(Hardware not included)</span>
+        <strong>{{ 'DASHBOARD.ESTIMATED_PRICE' | translate }}</strong> ~299€
+        <span class="service-note">{{ 'DASHBOARD.HARDWARE_NOT_INCLUDED' | translate }}</span>
       </p>
     </div>
 
-    <button class="btn-connect full-width" (click)="closeServiceSetup()">Close</button>
+    <button class="btn-connect full-width" (click)="closeServiceSetup()">{{ 'DASHBOARD.MODAL_BTN_CLOSE' | translate }}</button>
 
   </div>
 </div>

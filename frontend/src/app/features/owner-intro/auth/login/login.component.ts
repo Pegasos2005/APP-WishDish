@@ -1,5 +1,4 @@
-// AfterViewInit login movil
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../../core/services/owner-intro/auth.service';

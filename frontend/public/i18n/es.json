@@ -42,5 +42,28 @@
     "SUBMIT": "Crear Cuenta",
     "WRONG_NUMBER": "He escrito mal mi número",
     "GO_LOGIN": "¿Ya tienes cuenta? Inicia sesión"
+  },
+  "DASHBOARD": {
+    "TITLE": "Configuración del Dispositivo",
+    "SUBTITLE": "Por favor, selecciona cómo quieres configurar este dispositivo.",
+    "CARD_NEW_ESTABLISHMENT_TITLE": "Nuevo Local",
+    "CARD_NEW_ESTABLISHMENT_DESC": "Configura este dispositivo como el servidor principal",
+    "CARD_AUTO_LINK_TITLE": "Enlace Automático",
+    "CARD_AUTO_LINK_DESC": "Busca en la red un servidor existente",
+    "CARD_MANUAL_LINK_TITLE": "Enlace Manual (IP)",
+    "CARD_MANUAL_LINK_DESC": "Conectar usando la IP del servidor",
+    "CARD_PRO_SETUP_TITLE": "Servicio de Montaje",
+    "CARD_PRO_SETUP_DESC": "Obtén una instalación profesional",
+    "MODAL_MANUAL_LINK_TITLE": "Enlace Manual por IP",
+    "MODAL_MANUAL_LINK_DESC": "Introduce la dirección IPv4 del ordenador principal (ej. 192.168.1.50).",
+    "MODAL_BTN_CANCEL": "Cancelar",
+    "MODAL_BTN_CONNECT": "Conectar",
+    "MODAL_PRO_SETUP_TITLE": "Servicio Profesional de Montaje",
+    "MODAL_PRO_SETUP_DESC": "Deja que nuestros expertos configuren la red, el hardware y la carta de tu restaurante a la perfección.",
+    "PHONE": "Teléfono:",
+    "EMAIL": "Correo:",
+    "ESTIMATED_PRICE": "Precio estimado:",
+    "HARDWARE_NOT_INCLUDED": "(Hardware no incluido)",
+    "MODAL_BTN_CLOSE": "Cerrar"
   }
 }
