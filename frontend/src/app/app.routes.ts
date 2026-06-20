@@ -1,39 +1,28 @@
-import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-  // 1. Si entran a la raíz, los mandamos a owner-intro/login
-  {
-    path: '',
-    redirectTo: 'owner-intro/login',
-    pathMatch: 'full'
-  },
 
-  // 2. Ruta Padre (El Layout que contiene el Header)
+  {
+    path: 'owner-intro/login',
+    loadComponent: () => import('./features/owner-intro/login/login.component').then(m => m.LoginComponent)
+  },
+  {
+    path: 'owner-intro/register',
+    loadComponent: () => import('./features/owner-intro/register/register.component').then(m => m.RegisterComponent)
+  },
   {
     path: 'owner-intro',
-    loadComponent: () => import('./shared/layouts/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
-
-    // 3. Rutas Hijas (Se incrustarán debajo del Header)
+    canActivate: [authGuard], // 👮‍♂️ Ponemos el guardián en la puerta principal
     children: [
-      {
-        path: 'login', // La ruta real será: localhost:4200/owner-intro/login
-        loadComponent: () => import('./features/owner-intro/auth/login/login.component').then(m => m.LoginComponent),
-        data: { showBackButton: false, showWelcomeText: false  }
-      },
-      {
-        path: 'register',
-        loadComponent: () => import('./features/owner-intro/auth/register/register.component').then(m => m.RegisterComponent),
-        data: { showBackButton: false, showWelcomeText: false }
-      },
+      // Todas las rutas aquí dentro están protegidas automáticamente
       {
         path: 'dashboard',
-        loadComponent: () => import('./features/owner-intro/dashboard/dashboard.component').then(m => m.DashboardComponent),
-        data: { showBackButton: false, showWelcomeText: true }
+        loadComponent: () => import('./features/owner-intro/dashboard/dashboard.component').then(m => m.DashboardComponent)
       }
-      // Aquí añadiremos más adelante:
-      // { path: 'options', loadComponent: () => ... }
-      // { path: 'new-local', loadComponent: () => ... }
     ]
-  }
+  },
+
+  // (Opcional) Ruta por defecto para que no se pierdan
+  { path: '', redirectTo: 'owner-intro/login', pathMatch: 'full' },
 ];
