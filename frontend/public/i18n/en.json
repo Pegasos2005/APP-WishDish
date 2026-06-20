@@ -12,7 +12,7 @@
     "PASSWORD_PLACEHOLDER": "Minimum 6 characters",
     "NUMBER_PHONE": "Phone number (with prefix)",
     "NUMBER_PHONE_PLACEHOLDER": "+44 770 000000",
-    "PHONE_METHOD_DESCRIPTION": "You will get a free SMS with a code of 6 digits.",
+    "PHONE_METHOD_DESCRIPTION": "You will receive SMS with a code of 6 digits.",
     "SEND_SMS": "Send SMS",
     "ENTER": "Enter",
     "REGISTER": "First access? Register"
